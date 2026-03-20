@@ -1,0 +1,3 @@
+arb-dir: lib/i18n
+output-dir: lib/i18n/generated
+required-resource-attributes: false

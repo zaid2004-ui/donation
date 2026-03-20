@@ -1,0 +1,155 @@
+{
+  "@@locale": "ar",
+  "login": "دخول",
+  "@login": {
+    "description": "تسجيل الدخول"
+  },
+  "account": "الحساب",
+  "@account": {
+    "description": "حساب المستخدم "
+  },
+  "donation": "تبرع",
+  "@donation": {
+    "description": "اسم المشروع"
+  },
+  "next": "التالي",
+  "@next": {
+    "description": " زر التالي "
+  },
+  "skip": "تخطي",
+  "@skip": {
+    "description": " زر التخطي "
+  },
+  "joinUs": "انظم الينا",
+  "@joinUs": {
+    "description": " انظم الينا  "
+  },
+  "subJoin": "طريقة بسيطة وموثوقة للتبرع",
+  "@subJoin": {
+    "description": " طريقة بسيطة وموثوقة للتبرع  "
+  },
+  "supWelcom": " أحدث فرقاً في حياة شخص ما",
+  "@supWelcom": {
+    "description": "  أحدث فرقاً في حياة شخص ما  "
+  },
+  "welcome": "مرحبا بك في تطبيق التبرع",
+  "@welcome": {
+    "description": "   مرحبا في في التطبيق  "
+  },
+  "email": "الايميل",
+  "@email": {
+    "description": "البريد الالكتروني  "
+  },
+  "password": "كلمة السر",
+  "@password": {
+    "description": "الرقم السري "
+  },
+  "daccount": "ليس لديك حساب ؟",
+  "@daccount": {
+    "description": "ليس لديك حساب"
+  },
+  "registration": "تسجيل",
+  "@registration": {
+    "description": "  تسجيل"
+  },
+  "join": "انضم الينا",
+  "@join": {
+    "description": "  انضم الينا"
+  },
+  "name": "الاسم  ",
+  "@name": {
+    "description": "  الاسم"
+  },
+  "haccount": " هل لديك  حساب؟ ",
+  "@haccount": {
+    "description": "  هل لديك  حساب؟ "
+  },
+  "forgot": "هل نسيت كلمة المرور",
+  "@forgot": {
+    "description": "  هل نسيت كلمة المرور "
+  },
+  "reset": "اعد ضبطها",
+  "@reset": {
+    "description": " استعدها"
+  },
+  "enteryouremail": " أدخل بريدك الإلكتروني لتلقي رابط إعادة تعيين كلمة المرور",
+  "@enteryouremail": {
+    "description": " ادخل بريدك الالكتروني"
+  },
+  "remember": " تذكرت كلمة السر؟",
+  "@remember": {
+    "description": " تذكرت "
+  },
+  "forgotpassword": "هل نسيت كلمة المرور؟",
+  "@forgotpassword": {
+    "description": "نص لزر أو رابط إعادة تعيين كلمة المرور"
+  },
+  "clickhere_en": "Click here",
+  "@clickhere_en": {
+    "description": "Text shown to the user for a button or link"
+  },
+  "clickhere": "اضغط هنا",
+  "@clickhere": {
+    "description": "نص يظهر للمستخدم للضغط على رابط أو زر"
+  },
+  "confirm": "تاكيد كلمة السر",
+  "@confirm": {
+    "description": "تاكيد كلمة السر"
+  },
+  "themeMode": "وضع الثيم",
+  "@themeMode": {
+    "description": "إعداد وضع الثيم (فاتح أو داكن)"
+  },
+  "language": "اللغة",
+  "@language": {
+    "description": "إعداد اختيار لغة التطبيق"
+  },
+  "policiesControls": "السياسات والتحكم",
+  "@policiesControls": {
+    "description": "قسم السياسات وخيارات التحكم"
+  },
+  "faq": "الأسئلة الشائعة",
+  "@faq": {
+    "description": "قسم الأسئلة المتكررة"
+  },
+  "faq_q1": "كيف يمكنني إنشاء حساب؟",
+  "@faq_q1": {
+    "description": "السؤال الأول في الأسئلة الشائعة"
+  },
+  "faq_a1": "اضغط على إنشاء حساب وأدخل بياناتك الشخصية.",
+  "@faq_a1": {
+    "description": "إجابة السؤال الأول"
+  },
+  "faq_q2": "كيف يمكنني التبرع؟",
+  "@faq_q2": {
+    "description": "السؤال الثاني في الأسئلة الشائعة"
+  },
+  "faq_a2": "اختر فئة، ثم حدد المؤسسة وأكمل عملية الدفع.",
+  "@faq_a2": {
+    "description": "إجابة السؤال الثاني"
+  },
+  "faq_q3": "هل تبرعي آمن؟",
+  "@faq_q3": {
+    "description": "السؤال الثالث في الأسئلة الشائعة"
+  },
+  "faq_a3": "نعم، جميع التبرعات يتم تخزينها ومعالجتها بشكل آمن.",
+  "@faq_a3": {
+    "description": "إجابة السؤال الثالث"
+  },
+  "faq_q4": "هل يمكنني رؤية سجل التبرعات الخاص بي؟",
+  "@faq_q4": {
+    "description": "السؤال الرابع في الأسئلة الشائعة"
+  },
+  "faq_a4": "نعم، يمكنك عرض جميع تبرعاتك السابقة من خلال ملفك الشخصي.",
+  "@faq_a4": {
+    "description": "إجابة السؤال الرابع"
+  },
+  "faq_q5": "كيف يتم التحقق من المؤسسات؟",
+  "@faq_q5": {
+    "description": "السؤال الخامس في الأسئلة الشائعة"
+  },
+  "faq_a5": "يتم مراجعة المؤسسات والموافقة عليها من قبل المشرف قبل نشرها.",
+  "@faq_a5": {
+    "description": "إجابة السؤال الخامس"
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "@@locale": "en",
+  "login": "Login",
+  "@login": {
+    "description": "تسجيل الدخول"
+  },
+  "account": "Account",
+  "@account": {
+    "description": "تسجيل الدخول"
+  },
+  "donation": "donation",
+  "@donation": {
+    "description": "تسجيل الدخول"
+  },
+  "next": "next",
+  "@next": {
+    "description": " زر التالي "
+  },
+  "skip": "skip",
+  "@skip": {
+    "description": " زر التخطي "
+  },
+  "joinUs": " Join Us",
+  "@joinUs": {
+    "description": " انظم الينا  "
+  },
+  "subJoin": "A simple and trusted way to donate",
+  "@subJoin": {
+    "description": " طريقة بسيطة وموثوقة للتبرع  "
+  },
+  "supWelcom": " make a difference in someone's life",
+  "@supWelcom": {
+    "description": "  أحدث فرقاً في حياة شخص ما  "
+  },
+  "welcome": "welcome to donation",
+  "@welcome": {
+    "description": "   مرحبا في في التطبيق  "
+  },
+  "email": "email",
+  "@email": {
+    "description": "البريد الالكتروني  "
+  },
+  "password": "password",
+  "@password": {
+    "description": "الرقم السري "
+  },
+  "daccount": "You don't have an account",
+  "@daccount": {
+    "description": "ليس لديك حساب"
+  },
+  "registration": "Registration",
+  "@registration": {
+    "description": "  تسجيل"
+  },
+  "join": "  join us",
+  "@join": {
+    "description": "  انضم الينا"
+  },
+  "name": "user name",
+  "@name": {
+    "description": "  الاسم"
+  },
+  "haccount": "Do you have an account?",
+  "@haccount": {
+    "description": "  هل لديك  حساب؟ "
+  },
+  "forgot": "Forgot your password?",
+  "@forgot": {
+    "description": "  هل نسيت كلمة المرور "
+  },
+  "reset": "Reset it",
+  "@reset": {
+    "description": " استعدها"
+  },
+  "enteryouremail": " Enter your email to receive a password reset link",
+  "@enteryouremail": {
+    "description": " ادخل بريدك الالكتروني"
+  },
+  "remember": " Remember your password?",
+  "@remember": {
+    "description": " تذكرت "
+  },
+  "forgotpassword": "Did you forget your password?",
+  "@forgotpassword": {
+    "description": "نص لزر أو رابط إعادة تعيين كلمة المرور"
+  },
+  "clickhere_en": "Click here",
+  "@clickhere_en": {
+    "description": "Text shown to the user for a button or link"
+  },
+  "confirm": "  Confirm password",
+  "@confirm": {
+    "description": "تاكيد كلمة السر"
+  },
+  "themeMode": "Theme Mode",
+  "@themeMode": {
+    "description": "App theme mode setting (light or dark)"
+  },
+  "language": "Language",
+  "@language": {
+    "description": "App language selection setting"
+  },
+  "policiesControls": "Policies and Controls",
+  "@policiesControls": {
+    "description": "Policies and control options section"
+  },
+  "faq": "Frequently Asked Questions",
+  "@faq": {
+    "description": "Frequently asked questions section"
+  },
+  "faq_q1": "How do I create an account?",
+  "@faq_q1": {
+    "description": "First FAQ question"
+  },
+  "faq_a1": "Click on Sign Up and enter your personal details.",
+  "@faq_a1": {
+    "description": "Answer to the first FAQ question"
+  },
+  "faq_q2": "How do I donate?",
+  "@faq_q2": {
+    "description": "Second FAQ question"
+  },
+  "faq_a2": "Choose a category, select an institution, and complete the payment process.",
+  "@faq_a2": {
+    "description": "Answer to the second FAQ question"
+  },
+  "faq_q3": "Is my donation secure?",
+  "@faq_q3": {
+    "description": "Third FAQ question"
+  },
+  "faq_a3": "Yes, all donations are securely stored and processed.",
+  "@faq_a3": {
+    "description": "Answer to the third FAQ question"
+  },
+  "faq_q4": "Can I see my donation history?",
+  "@faq_q4": {
+    "description": "Fourth FAQ question"
+  },
+  "faq_a4": "Yes, you can view all your previous donations in your profile.",
+  "@faq_a4": {
+    "description": "Answer to the fourth FAQ question"
+  },
+  "faq_q5": "How are institutions verified?",
+  "@faq_q5": {
+    "description": "Fifth FAQ question"
+  },
+  "faq_a5": "Institutions are reviewed and approved by the admin before being published.",
+  "@faq_a5": {
+    "description": "Answer to the fifth FAQ question"
+  }
+}
