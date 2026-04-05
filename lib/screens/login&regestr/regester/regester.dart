@@ -23,26 +23,20 @@ class _RegesterState extends State<Regester> {
   final GlobalKey<FormState> globalKey = GlobalKey();
   Future<UserCredential?> signInWithGoogle() async {
     try {
-      // 1. تشغيل تدفق تسجيل الدخول من جوجل
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-      if (googleUser == null) return null; // المستخدم أغلق النافذة
+      if (googleUser == null) return null;
 
-      // 2. جلب تفاصيل المصادقة
       final GoogleSignInAuthentication googleAuth =
           await googleUser.authentication;
-
-      // 3. إنشاء التوثيق لـ Firebase
       final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
 
-      // 4. تسجيل الدخول الفعلي في Firebase (هنا يتم الحفظ في Firebase Auth)
       UserCredential userCredential = await FirebaseAuth.instance
           .signInWithCredential(credential);
 
-      // الآن يمكنك جلب بيانات المستخدم بنجاح
       log('---------------------------Email: ${userCredential.user?.email}');
 
       return userCredential;
@@ -214,14 +208,12 @@ class _RegesterState extends State<Regester> {
                             () async {
                               UserCredential? user = await signInWithGoogle();
                               if (user != null) {
-                                // نجاح التسجيل! الآن انتقل للصفحة الرئيسية
                                 if (!mounted) return;
                                 Generalwidget().showSucessMessage(
                                   context,
                                   "Signed in successfully",
                                 );
 
-                                // استبدل Routes.home بمسار الصفحة الرئيسية عندك
                                 AppRouter.pushNamed(Routes.home);
                               }
                             },
