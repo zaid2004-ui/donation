@@ -103,6 +103,49 @@ class Generalwidget {
     );
   }
 
+  //text field witout hiden
+  TextFormField getTextFormFieldpassword(
+    BuildContext context,
+    String label, {
+    TextEditingController? controller,
+  }) {
+    return TextFormField(
+      decoration: getInputDecoration(context, label),
+      controller: controller,
+
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'This field is required';
+        }
+        if (value.length < 8 || value.length > 12) {
+          return 'password must be between 8 and 12 characters';
+        }
+        return null;
+      },
+    );
+  }
+
+  //getTextFormFieldpasswordconferm
+  TextFormField getTextFormFieldpasswordconferm(
+    BuildContext context,
+    String label, {
+    TextEditingController? controller,
+  }) {
+    return TextFormField(
+      decoration: getInputDecoration(context, label),
+      controller: controller,
+
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'This field is required';
+        }
+
+        return null;
+      },
+    );
+  }
+
+  //getTextFormFieldUserNmae
   TextFormField getTextFormFieldUserNmae(
     BuildContext context,
     String label, {
@@ -159,7 +202,18 @@ class Generalwidget {
         borderRadius: BorderRadius.all(Radius.circular(20)),
       ),
 
-      child: IconButton(onPressed: () {}, icon: icon, iconSize: 40),
+      child: IconButton(onPressed: () => onPressed(), icon: icon, iconSize: 40),
+    );
+  }
+
+  //show sucss message
+  void showSucessMessage(BuildContext context, String meesage) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(meesage),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        duration: Duration(seconds: 2),
+      ),
     );
   }
 }

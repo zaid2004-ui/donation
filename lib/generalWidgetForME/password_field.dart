@@ -3,8 +3,13 @@ import 'package:plasess/generalWidgetForME/general_widget.dart';
 import 'package:plasess/theme/app_icons.dart';
 
 class PasswordField extends StatefulWidget {
-  const PasswordField({super.key, required this.label});
+  const PasswordField({
+    super.key,
+    required this.label,
+    required this.controller,
+  });
   final String label;
+  final TextEditingController controller;
 
   @override
   State<PasswordField> createState() => _PasswordFieldState();
@@ -16,6 +21,7 @@ class _PasswordFieldState extends State<PasswordField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: widget.controller,
       obscureText: obscureText,
 
       decoration: Generalwidget()

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "857099557864",
+    "project_id": "donation-platform-e7e74",
+    "storage_bucket": "donation-platform-e7e74.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:857099557864:android:7f726abfb9afaf5710625d",
+        "android_client_info": {
+          "package_name": "com.example.plasess"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqRCYfaqM6UHUuoWlpW7OlZLxr8QdfBiw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

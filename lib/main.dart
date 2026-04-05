@@ -1,13 +1,22 @@
+import 'dart:developer';
+
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:plasess/Riverpod/localizations.dart';
 import 'package:plasess/Riverpod/theme_provider.dart';
+import 'package:plasess/firebase_options.dart';
 import 'package:plasess/router/app_route.dart';
 import 'package:plasess/screens/onboarding/splash_screen.dart';
 import 'package:plasess/theme/app_theme.dart';
 import 'i18n/generated/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-void main() => runApp(ProviderScope(child: const MyApp()));
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  runApp(ProviderScope(child: const MyApp()));
+}
 
 class MyApp extends ConsumerStatefulWidget {
   const MyApp({super.key});
@@ -17,6 +26,18 @@ class MyApp extends ConsumerStatefulWidget {
 }
 
 class _MyAppState extends ConsumerState<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      if (user == null) {
+        log('==================================User is currently signed out!');
+      } else {
+        log('==================================User is signed in!');
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final locales = ref.watch(localeProvider);

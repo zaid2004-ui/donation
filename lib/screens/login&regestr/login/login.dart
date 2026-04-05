@@ -1,3 +1,5 @@
+import 'dart:developer';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -6,29 +8,35 @@ import 'package:plasess/generalWidgetForME/password_field.dart';
 import 'package:plasess/i18n/generated/app_localizations.dart';
 import 'package:plasess/router/app_route.dart';
 import 'package:plasess/router/route.dart';
+import 'package:plasess/screens/login&regestr/login/biometric.dart';
 import 'package:plasess/screens/login&regestr/reset_passowrd/provider.dart';
 
-class Login extends ConsumerWidget {
+class Login extends ConsumerStatefulWidget {
   const Login({super.key});
 
   @override
-  Widget build(BuildContext context, ref) {
-    // final TextEditingController emailControler = TextEditingController();
-    final GlobalKey<FormState> globalKey = GlobalKey();
-    final TextEditingController emailControler = TextEditingController();
+  ConsumerState<Login> createState() => _LoginState();
+}
 
+class _LoginState extends ConsumerState<Login> {
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController emailControler = TextEditingController();
+  final GlobalKey<FormState> globalKey = GlobalKey();
+  bool isLoading = false;
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
         children: [
-          //wave and img logo
+          // wave and logo
           Stack(
             children: [
-              //wave
               Transform.flip(
                 flipY: true,
                 child: Generalwidget().getWavesWidget(context),
               ),
-              //img
+
               Center(
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(0, 60, 0, 0),
@@ -39,16 +47,26 @@ class Login extends ConsumerWidget {
                   ),
                 ),
               ),
+              //CircularProgressIndicator
+              if (isLoading)
+                Center(
+                  child: CircularProgressIndicator(
+                    color: Colors.black45,
+                    strokeWidth: 4.0,
+                  ),
+                )
+              else
+                SizedBox.shrink(),
             ],
           ),
-          //name for screen
+
           Center(
             child: Text(
               AppLocalizations.of(context)!.login,
               style: Theme.of(context).textTheme.titleLarge,
             ),
           ),
-          //container for text fields and buttons
+
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: Container(
@@ -66,12 +84,11 @@ class Login extends ConsumerWidget {
                 ],
               ),
 
-              //text fields from general widget
               child: Form(
                 key: globalKey,
                 child: ListView(
                   children: [
-                    //email
+                    // email
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 100, 20, 20),
                       child: Generalwidget().getTextFormField(
@@ -80,23 +97,26 @@ class Login extends ConsumerWidget {
                         controller: emailControler,
                       ),
                     ),
-                    //password
+
+                    // password
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 20, 20, 1),
                       child: PasswordField(
+                        controller: passwordController,
                         label: AppLocalizations.of(context)!.password,
                       ),
                     ),
-                    // forgot passowerd
+
+                    // forgot password
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(AppLocalizations.of(context)!.forgotpassword),
                         TextButton(
                           onPressed: () {
-                            if (emailControler.text == '') {
+                            if (emailControler.text.isEmpty) {
                               Fluttertoast.showToast(
-                                msg: "pleas Enter your email",
+                                msg: "Please enter your email",
                                 backgroundColor: Colors.red,
                               );
                             } else {
@@ -112,21 +132,50 @@ class Login extends ConsumerWidget {
                         ),
                       ],
                     ),
-                    //button login
+
+                    // login button
                     Padding(
-                      padding: EdgeInsetsGeometry.fromLTRB(10, 0, 10, 0),
+                      padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                       child: Generalwidget().getElevatedButton(
                         context,
                         'login',
-                        () {
-                          // getBiometric();
-                          AppRouter.pushNamed(Routes.home);
+                        () async {
+                          if (globalKey.currentState!.validate()) {
+                            setState(() {
+                              isLoading = true;
+                            });
+                            try {
+                              await FirebaseAuth.instance
+                                  .signInWithEmailAndPassword(
+                                    email: emailControler.text.trim(),
+                                    password: passwordController.text.trim(),
+                                  );
+                              Future.delayed(const Duration(seconds: 2), () {
+                                // getBiometric();
+                                AppRouter.pushNamed(Routes.home);
+                              });
+                            } on FirebaseAuthException catch (e) {
+                              if (e.code == 'user-not-found') {
+                                log('No user found for that email.');
+                              } else if (e.code == 'wrong-password') {
+                                log('Wrong password provided for that user.');
+                              }
 
-                          // if (globalKey.currentState!.validate()) {}
+                              Fluttertoast.showToast(
+                                msg: e.message ?? "Login failed",
+                                backgroundColor: Colors.red,
+                              );
+                            } finally {
+                              setState(() {
+                                isLoading = false;
+                              });
+                            }
+                          }
                         },
                       ),
                     ),
-                    //dont have account
+
+                    // register
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
