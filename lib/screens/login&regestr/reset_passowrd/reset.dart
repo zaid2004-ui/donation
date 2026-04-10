@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:plasess/generalWidgetForME/general_widget.dart';
@@ -44,7 +45,27 @@ class Reset extends ConsumerWidget {
             child: Generalwidget().getElevatedButton(
               context,
               AppLocalizations.of(context)!.reset,
-              () {},
+              () async {
+                try {
+                  await FirebaseAuth.instance.sendPasswordResetEmail(
+                    email: emailControler.text.trim(),
+                  );
+
+                  if (!context.mounted) return;
+
+                  Generalwidget().showSucessMessage(
+                    context,
+                    'Check your email to reset your password',
+                  );
+                } on FirebaseAuthException catch (e) {
+                  if (!context.mounted) return;
+
+                  Generalwidget().showErrorMessage(
+                    context,
+                    e.message ?? 'Something went wrong',
+                  );
+                }
+              },
             ),
           ),
           //
