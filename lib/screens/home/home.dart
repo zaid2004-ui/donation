@@ -1,6 +1,12 @@
+import 'dart:developer';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:plasess/router/app_route.dart';
+import 'package:plasess/router/route.dart';
+import 'package:plasess/screens/home/api_category/category_api.dart';
+import 'package:plasess/screens/home/api_category/category_model.dart';
 import 'package:plasess/screens/home/drawer.dart';
 import 'package:plasess/theme/app_icons.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -19,12 +25,23 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   void initState() {
     super.initState();
     _controller = AnimationController(vsync: this);
+    getCategories();
   }
 
   @override
   void dispose() {
     _controller.dispose();
     super.dispose();
+  }
+
+  final categoryApi = CategoryApi();
+  List<CateogryModel> cateogryList = [];
+  bool isLoding = true;
+
+  Future<void> getCategories() async {
+    cateogryList = await categoryApi.getCategories();
+    isLoding = false;
+    setState(() {});
   }
 
   final CarouselSliderController sliderController = CarouselSliderController();
@@ -108,10 +125,17 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               mainAxisSpacing: 10,
               childAspectRatio: 1.0,
             ),
-            itemCount: 7,
+            itemCount: cateogryList.length,
             itemBuilder: (context, index) {
               return InkWell(
-                onTap: () {},
+                onTap: () {
+                  final id = cateogryList[index].categoryId;
+                  log('Tapped categoryId: $id'); // تيست
+                  AppRouter.pushNamed(
+                    Routes.institutions,
+                    args: cateogryList[index].categoryId,
+                  );
+                },
                 child: Card(
                   margin: EdgeInsets.all(5),
                   color: Theme.of(context).colorScheme.surface,
@@ -121,7 +145,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                       Image.asset('assets/images/logo.png'),
                       SizedBox(height: 10),
                       Text(
-                        'zaid',
+                        cateogryList[index].name,
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ],

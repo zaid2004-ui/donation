@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:plasess/firstpalge.dart';
 import 'package:plasess/router/route.dart';
 import 'package:plasess/screens/home/home.dart';
+import 'package:plasess/screens/institutions/institutions.dart';
 import 'package:plasess/screens/login&regestr/login/login.dart';
 import 'package:plasess/screens/login&regestr/regester/regester.dart';
 import 'package:plasess/screens/login&regestr/reset_passowrd/reset.dart';
@@ -38,6 +39,9 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const Home());
       case Routes.faQuestions:
         return MaterialPageRoute(builder: (_) => const FaQuestions());
+      case Routes.institutions:
+        final categoryId = settings.arguments as String;
+        return MaterialPageRoute(builder: (_) => Institutions(categoryId));
 
       default:
         return _errorRoute();

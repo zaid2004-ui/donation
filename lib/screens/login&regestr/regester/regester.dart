@@ -16,11 +16,11 @@ class Regester extends StatefulWidget {
 }
 
 class _RegesterState extends State<Regester> {
+  final GlobalKey<FormState> globalKey = GlobalKey();
   TextEditingController emailControler = TextEditingController();
   TextEditingController passwordControler = TextEditingController();
   TextEditingController confermPasswordController = TextEditingController();
-
-  final GlobalKey<FormState> globalKey = GlobalKey();
+  //google sign in
   Future<UserCredential?> signInWithGoogle() async {
     try {
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
@@ -46,6 +46,15 @@ class _RegesterState extends State<Regester> {
     }
   }
 
+  //dispose controllers to avoid memory leak
+  @override
+  void dispose() {
+    emailControler.dispose();
+    passwordControler.dispose();
+    confermPasswordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,11 +71,11 @@ class _RegesterState extends State<Regester> {
               //img
               Center(
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 60, 0, 0),
+                  padding: const EdgeInsets.fromLTRB(0, 40, 0, 0),
                   child: Image.asset(
                     'assets/images/logo.png',
                     width: double.infinity,
-                    height: 100,
+                    height: 200,
                   ),
                 ),
               ),
@@ -85,6 +94,7 @@ class _RegesterState extends State<Regester> {
             child: Container(
               width: double.infinity,
               height: 450,
+              //decoration for container
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.surface,
                 borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -137,58 +147,49 @@ class _RegesterState extends State<Regester> {
                         context,
                         AppLocalizations.of(context)!.confirm,
                         controller: confermPasswordController,
+                        passwordController: passwordControler,
                       ),
                     ),
 
-                    //button login
+                    //button for regestration and google sign in
                     Row(
                       children: [
                         Padding(
                           padding: EdgeInsetsGeometry.fromLTRB(20, 0, 0, 0),
+                          //regestration button
                           child: Generalwidget().getElevatedButton(
                             context,
                             AppLocalizations.of(context)!.registration,
                             () async {
                               if (globalKey.currentState!.validate()) {
-                                if (passwordControler.text !=
-                                    confermPasswordController.text) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text("password not match"),
-                                      backgroundColor: Colors.redAccent,
-                                    ),
-                                  );
-                                  return;
-                                }
                                 try {
                                   await FirebaseAuth.instance
                                       .createUserWithEmailAndPassword(
                                         email: emailControler.text.trim(),
                                         password: passwordControler.text.trim(),
                                       );
-                                  if (!mounted) return;
+
+                                  await FirebaseAuth.instance.currentUser!
+                                      .sendEmailVerification();
+                                  if (!context.mounted) return;
                                   Generalwidget().showSucessMessage(
                                     context,
-                                    "account created successfully",
+                                    "Verification email sent. Please check your email and confirm your account.",
                                   );
-                                  Future.delayed(Duration(seconds: 2), () {
-                                    if (!mounted) return;
+
+                                  Future.delayed(Duration(seconds: 3), () {
                                     AppRouter.pushNamed(Routes.login);
                                   });
                                 } on FirebaseAuthException catch (e) {
                                   if (e.code == 'weak-password') {
-                                    log('The password provided is too weak.');
-                                  } else if (e.code == 'email-already-in-use') {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                          "The account already exists for that email.",
-                                        ),
-                                        backgroundColor: Colors.redAccent,
-                                      ),
+                                    Generalwidget().showErrorMessage(
+                                      context,
+                                      "The password provided is too weak",
                                     );
-                                    log(
-                                      'The account already exists for that email.',
+                                  } else if (e.code == 'email-already-in-use') {
+                                    Generalwidget().showErrorMessage(
+                                      context,
+                                      "The account already exists for that email",
                                     );
                                   }
                                 } catch (e) {
@@ -208,7 +209,7 @@ class _RegesterState extends State<Regester> {
                             () async {
                               UserCredential? user = await signInWithGoogle();
                               if (user != null) {
-                                if (!mounted) return;
+                                if (!context.mounted) return;
                                 Generalwidget().showSucessMessage(
                                   context,
                                   "Signed in successfully",

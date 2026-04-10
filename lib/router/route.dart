@@ -9,4 +9,5 @@ class Routes {
   static const reset = 'Reset';
   static const home = 'Home';
   static const faQuestions = 'FaQuestions';
+  static const institutions = 'Institutions';
 }

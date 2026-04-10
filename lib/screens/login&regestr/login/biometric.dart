@@ -26,7 +26,7 @@ Future<void> getBiometric() async {
       localizedReason: 'Please authenticate to see private page contant',
     );
     if (didAuthenticate) {
-      AppRouter.pushNamed(Routes.regester);
+      AppRouter.pushNamed(Routes.home);
     }
   } catch (e) {
     Fluttertoast.showToast(

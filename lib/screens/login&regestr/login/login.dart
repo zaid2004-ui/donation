@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -23,6 +22,13 @@ class _LoginState extends ConsumerState<Login> {
   final TextEditingController emailControler = TextEditingController();
   final GlobalKey<FormState> globalKey = GlobalKey();
   bool isLoading = false;
+  //dispose controllers
+  @override
+  void dispose() {
+    passwordController.dispose();
+    emailControler.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,11 +38,12 @@ class _LoginState extends ConsumerState<Login> {
           // wave and logo
           Stack(
             children: [
+              // wave
               Transform.flip(
                 flipY: true,
                 child: Generalwidget().getWavesWidget(context),
               ),
-
+              //logo
               Center(
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(0, 60, 0, 0),
@@ -47,19 +54,20 @@ class _LoginState extends ConsumerState<Login> {
                   ),
                 ),
               ),
-              //CircularProgressIndicator
-              if (isLoading)
-                Center(
-                  child: CircularProgressIndicator(
-                    color: Colors.black45,
-                    strokeWidth: 4.0,
-                  ),
-                )
-              else
-                SizedBox.shrink(),
             ],
           ),
 
+          //CircularProgressIndicator
+          if (isLoading)
+            Center(
+              child: CircularProgressIndicator(
+                color: Colors.black45,
+                strokeWidth: 4.0,
+              ),
+            )
+          else
+            SizedBox.shrink(),
+          //login text
           Center(
             child: Text(
               AppLocalizations.of(context)!.login,
@@ -150,15 +158,31 @@ class _LoginState extends ConsumerState<Login> {
                                     email: emailControler.text.trim(),
                                     password: passwordController.text.trim(),
                                   );
-                              Future.delayed(const Duration(seconds: 2), () {
-                                // getBiometric();
-                                AppRouter.pushNamed(Routes.home);
-                              });
+                              //reload user to get the latest email verification status
+                              await FirebaseAuth.instance.currentUser!.reload();
+                              // get the current user
+                              final user = FirebaseAuth.instance.currentUser;
+                              if (!context.mounted) return;
+                              // check if the email is verified
+                              if (!user!.emailVerified) {
+                                Generalwidget().showErrorMessage(
+                                  context,
+                                  "Please verify your email before logging in.",
+                                );
+                                return;
+                              }
+                              getBiometric();
                             } on FirebaseAuthException catch (e) {
                               if (e.code == 'user-not-found') {
-                                log('No user found for that email.');
+                                Generalwidget().showErrorMessage(
+                                  context,
+                                  "No user found for that email.",
+                                );
                               } else if (e.code == 'wrong-password') {
-                                log('Wrong password provided for that user.');
+                                Generalwidget().showErrorMessage(
+                                  context,
+                                  "Wrong password provided for that user.",
+                                );
                               }
 
                               Fluttertoast.showToast(

@@ -130,6 +130,7 @@ class Generalwidget {
     BuildContext context,
     String label, {
     TextEditingController? controller,
+    TextEditingController? passwordController,
   }) {
     return TextFormField(
       decoration: getInputDecoration(context, label),
@@ -138,6 +139,9 @@ class Generalwidget {
       validator: (value) {
         if (value == null || value.isEmpty) {
           return 'This field is required';
+        }
+        if (value != passwordController!.text) {
+          return 'password and confirm password must be the same';
         }
 
         return null;
@@ -212,7 +216,18 @@ class Generalwidget {
       SnackBar(
         content: Text(meesage),
         backgroundColor: Theme.of(context).colorScheme.primary,
-        duration: Duration(seconds: 2),
+        duration: Duration(seconds: 3),
+      ),
+    );
+  }
+
+  //show error message
+  void showErrorMessage(BuildContext context, String meesage) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(meesage),
+        backgroundColor: Theme.of(context).colorScheme.error,
+        duration: Duration(seconds: 3),
       ),
     );
   }
