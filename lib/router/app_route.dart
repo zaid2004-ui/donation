@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:plasess/firstpalge.dart';
 import 'package:plasess/router/route.dart';
+import 'package:plasess/screens/campaign/campain.dart';
 import 'package:plasess/screens/home/home.dart';
 import 'package:plasess/screens/institutions/institutions.dart';
+import 'package:plasess/screens/institutions/institutions_model.dart';
 import 'package:plasess/screens/login&regestr/login/login.dart';
 import 'package:plasess/screens/login&regestr/regester/regester.dart';
 import 'package:plasess/screens/login&regestr/reset_passowrd/reset.dart';
@@ -42,6 +44,16 @@ class AppRouter {
       case Routes.institutions:
         final categoryId = settings.arguments as String;
         return MaterialPageRoute(builder: (_) => Institutions(categoryId));
+      case Routes.campaign:
+        final institution = settings.arguments as InstitutionsModel;
+        return MaterialPageRoute(
+          builder: (_) => Campain(
+            name: institution.name,
+            description: institution.description,
+            donationNumber: institution.donationNumber,
+            instatiosnId: institution.instituttionId,
+          ),
+        );
 
       default:
         return _errorRoute();

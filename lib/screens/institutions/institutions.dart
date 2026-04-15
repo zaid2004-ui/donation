@@ -1,6 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:plasess/router/app_route.dart';
+import 'package:plasess/router/route.dart';
 import 'package:plasess/screens/institutions/institutions_api.dart';
 import 'package:plasess/screens/institutions/institutions_model.dart';
 
@@ -40,25 +42,33 @@ class _InstitutionsState extends State<Institutions> {
         itemCount: institutionsList.length,
         itemBuilder: (context, index) => Card(
           color: Theme.of(context).colorScheme.surface,
-          child: ListTile(
-            isThreeLine: true,
-            horizontalTitleGap: 1,
-            //image
-            leading: Image.asset(
-              'assets/images/logo.png',
-              width: 100,
-              height: 100,
-            ),
-            //title
-            title: Text(institutionsList[index].name),
-            //subtitle
-            subtitle: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(institutionsList[index].description),
-                SizedBox(height: 5),
-                Text('📞 ${institutionsList[index].donationNumber}'),
-              ],
+          child: InkWell(
+            onTap: () {
+              AppRouter.pushNamed(
+                Routes.campaign,
+                args: institutionsList[index],
+              );
+            },
+            child: ListTile(
+              isThreeLine: true,
+              horizontalTitleGap: 1,
+              //image
+              leading: Image.asset(
+                'assets/images/logo.png',
+                width: 100,
+                height: 100,
+              ),
+              //title
+              title: Text(institutionsList[index].name),
+              //subtitle
+              subtitle: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(institutionsList[index].description),
+                  SizedBox(height: 5),
+                  Text(' ${institutionsList[index].donationNumber}'),
+                ],
+              ),
             ),
           ),
         ),

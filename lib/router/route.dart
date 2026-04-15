@@ -10,4 +10,5 @@ class Routes {
   static const home = 'Home';
   static const faQuestions = 'FaQuestions';
   static const institutions = 'Institutions';
+  static const campaign = 'Campaign';
 }
