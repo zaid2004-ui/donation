@@ -3,7 +3,6 @@ import 'package:wave_widget/wave_widget.dart';
 
 class Generalwidget {
   //ExpansionTile
-
   ExpansionTile getExpnsionTile(
     BuildContext context,
     String title,

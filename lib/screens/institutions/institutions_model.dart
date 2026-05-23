@@ -7,6 +7,7 @@ class InstitutionsModel {
   final String categoryId;
   final String description;
   final String instituttionId;
+
   InstitutionsModel({
     required this.categoryId,
     required this.description,
@@ -29,7 +30,7 @@ class InstitutionsModel {
       donationNumber: json['Donation_Number'] ?? '',
       categoryId: categoryId,
       description: json['Description'] ?? '',
-      instituttionId: json['Institutions_ID'] ?? docId,
+      instituttionId: docId,
     );
   }
 }

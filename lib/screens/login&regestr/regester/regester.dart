@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -18,6 +19,9 @@ class Regester extends StatefulWidget {
 class _RegesterState extends State<Regester> {
   final GlobalKey<FormState> globalKey = GlobalKey();
   TextEditingController emailControler = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+
+  TextEditingController nameControler = TextEditingController();
   TextEditingController passwordControler = TextEditingController();
   TextEditingController confermPasswordController = TextEditingController();
   //google sign in
@@ -118,6 +122,17 @@ class _RegesterState extends State<Regester> {
                       child: Generalwidget().getTextFormFieldUserNmae(
                         context,
                         AppLocalizations.of(context)!.name,
+                        controller: nameControler,
+                      ),
+                    ),
+
+                    //phone number
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 5, 20, 10),
+                      child: Generalwidget().getTextFormFieldUserNmae(
+                        context,
+                        AppLocalizations.of(context)!.name,
+                        controller: phoneController,
                       ),
                     ),
 
@@ -169,8 +184,27 @@ class _RegesterState extends State<Regester> {
                                         password: passwordControler.text.trim(),
                                       );
 
-                                  await FirebaseAuth.instance.currentUser!
-                                      .sendEmailVerification();
+                                  final user =
+                                      FirebaseAuth.instance.currentUser!;
+
+                                  await FirebaseFirestore.instance
+                                      .collection('Core Collections')
+                                      .doc('lWGLG8VymCuLNpfF3ovm')
+                                      .collection('User')
+                                      .doc(user.uid)
+                                      .set({
+                                        'phoneNumber': phoneController.text
+                                            .trim(),
+                                        'User_ID': user.uid,
+                                        'Name': nameControler.text.trim(),
+                                        'Email': emailControler.text.trim(),
+                                        'Photo_URL': '',
+                                        'Role': 'User',
+                                        'Favorites': [],
+                                        'Preferred_Categories': [],
+                                      });
+
+                                  user.sendEmailVerification();
                                   if (!context.mounted) return;
                                   Generalwidget().showSucessMessage(
                                     context,

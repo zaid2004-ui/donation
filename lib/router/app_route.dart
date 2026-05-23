@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:plasess/firstpalge.dart';
 import 'package:plasess/router/route.dart';
+import 'package:plasess/screens/admin/Institution/add_Institution.dart';
+import 'package:plasess/screens/admin/campaign/add_campaign.dart';
+import 'package:plasess/screens/admin/category/add_category_ui.dart';
 import 'package:plasess/screens/campaign/campain.dart';
 import 'package:plasess/screens/home/home.dart';
 import 'package:plasess/screens/institutions/institutions.dart';
@@ -10,8 +13,8 @@ import 'package:plasess/screens/login&regestr/regester/regester.dart';
 import 'package:plasess/screens/login&regestr/reset_passowrd/reset.dart';
 import 'package:plasess/screens/onboarding/welcomeScreens/slider_screen.dart';
 import 'package:plasess/screens/onboarding/welcomeScreens/welcome_1.dart';
+import 'package:plasess/screens/profile/profile.dart';
 import 'package:plasess/screens/screens_drawer/fa_questions.dart';
-import 'package:plasess/secondpage.dart';
 
 class AppRouter {
   const AppRouter._();
@@ -23,10 +26,12 @@ class AppRouter {
     // final object = settings.arguments;
 
     switch (settings.name) {
+      case Routes.profile:
+        return MaterialPageRoute(builder: (_) => const Profile());
       case Routes.firstpalge:
         return MaterialPageRoute(builder: (_) => const Firstpalge());
-      case Routes.secondpage:
-        return MaterialPageRoute(builder: (_) => const Secondpage());
+      case Routes.addCampaign:
+        return MaterialPageRoute(builder: (_) => const AddCampaignPage());
       case Routes.welcome1:
         return MaterialPageRoute(builder: (_) => const Welcome1());
       case Routes.sliderscreen:
@@ -54,6 +59,10 @@ class AppRouter {
             instatiosnId: institution.instituttionId,
           ),
         );
+      case Routes.addCategoryPage:
+        return MaterialPageRoute(builder: (_) => const AddCategoryPage());
+      case Routes.addInstitution:
+        return MaterialPageRoute(builder: (_) => const AddInstitution());
 
       default:
         return _errorRoute();

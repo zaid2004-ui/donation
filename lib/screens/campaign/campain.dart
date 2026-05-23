@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:plasess/screens/campaign/campaign_api.dart';
 import 'package:plasess/screens/campaign/campaign_model.dart';
+import 'package:plasess/screens/campaign/pyemnt_bootom_sheet.dart';
 
 class Campain extends StatefulWidget {
   const Campain({
@@ -22,6 +23,11 @@ class Campain extends StatefulWidget {
 }
 
 class _CampainState extends State<Campain> {
+  TextEditingController amountController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController cardNumberContrller = TextEditingController();
+  TextEditingController cardHolderNberContrller = TextEditingController();
+
   final campaignApi = CampaignApi();
   List<CampaaignModel> campaignsList = [];
   Future<void> getCampaigns(String instatiosnId) async {
@@ -75,90 +81,228 @@ class _CampainState extends State<Campain> {
           ),
           const SizedBox(height: 16),
 
+          //InkWell to show the donation
           ListView.builder(
             padding: const EdgeInsets.all(16),
             shrinkWrap: true,
             itemCount: campaignsList.length,
             itemBuilder: (context, index) {
-              return Card(
-                margin: const EdgeInsets.symmetric(vertical: 10),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // Title
-                      Text(
-                        "Title: ${campaignsList[index].title}",
-                        style: Theme.of(context).textTheme.titleLarge,
+              return Stack(
+                children: [
+                  InkWell(
+                    onTap: () {
+                      showDonateBottomSheet(context, campaignsList[index]);
+                    },
+
+                    child: Card(
+                      margin: const EdgeInsets.symmetric(vertical: 10),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
                       ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(12),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // Title
+                            Text(
+                              "Title: ${campaignsList[index].title}",
+                              style: Theme.of(context).textTheme.titleLarge,
+                            ),
 
-                      const SizedBox(height: 10),
+                            const SizedBox(height: 10),
 
-                      // Image
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.network(
-                          campaignsList[index].imageUrl,
-                          width: 50,
-                          height: 50,
+                            // Image
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.network(
+                                campaignsList[index].imageUrl,
+                                width: 50,
+                                height: 50,
+                              ),
+                            ),
+
+                            const SizedBox(height: 12),
+
+                            // Description
+                            Text(
+                              "Description: ${campaignsList[index].description}",
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
+
+                            const SizedBox(height: 8),
+
+                            // Donation Number
+                            Text(
+                              "Donation Number: ${campaignsList[index].targetAmount}",
+                            ),
+
+                            const SizedBox(height: 8),
+
+                            // Target Amount
+                            Text(
+                              "Target Amount: ${campaignsList[index].targetAmount}",
+                            ),
+
+                            const SizedBox(height: 8),
+
+                            // Dates
+                            Text(campaignsList[index].startDate.toString()),
+                            Text(
+                              "End Date: ${campaignsList[index].endDate.toString()}",
+                            ),
+
+                            const SizedBox(height: 8),
+
+                            // Status
+                            Row(
+                              children: const [
+                                Text("Status: "),
+                                Text(
+                                  "Inactive",
+                                  style: TextStyle(color: Colors.red),
+                                ),
+                              ],
+                            ),
+
+                            const SizedBox(height: 8),
+
+                            // IDs
+                            Text(
+                              "Campaign ID: ${campaignsList[index].campaignId}",
+                            ),
+                            Text(
+                              "Category ID: ${campaignsList[index].categoryId}",
+                            ),
+                            Text(
+                              "Institution ID: ${campaignsList[index].institutionId}",
+                            ),
+                          ],
                         ),
                       ),
-
-                      const SizedBox(height: 12),
-
-                      // Description
-                      Text(
-                        "Description: ${campaignsList[index].description}",
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-
-                      const SizedBox(height: 8),
-
-                      // Donation Number
-                      Text(
-                        "Donation Number: ${campaignsList[index].targetAmount}",
-                      ),
-
-                      const SizedBox(height: 8),
-
-                      // Target Amount
-                      Text(
-                        "Target Amount: ${campaignsList[index].targetAmount}",
-                      ),
-
-                      const SizedBox(height: 8),
-
-                      // Dates
-                      Text(campaignsList[index].startDate.toString()),
-                      Text(
-                        "End Date: ${campaignsList[index].endDate.toString()}",
-                      ),
-
-                      const SizedBox(height: 8),
-
-                      // Status
-                      Row(
-                        children: const [
-                          Text("Status: "),
-                          Text("Inactive", style: TextStyle(color: Colors.red)),
-                        ],
-                      ),
-
-                      const SizedBox(height: 8),
-
-                      // IDs (خفيفة بالآخر)
-                      Text("Campaign ID: ${campaignsList[index].campaignId}"),
-                      Text("Category ID: ${campaignsList[index].categoryId}"),
-                      Text(
-                        "Institution ID: ${campaignsList[index].institutionId}",
-                      ),
-                    ],
+                    ),
                   ),
-                ),
+                  // delete button for admin
+                  Positioned(
+                    top: 5,
+                    right: 5,
+                    child: IconButton(
+                      icon: const Icon(Icons.delete, color: Colors.red),
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: const Text('update Institution'),
+
+                              content: const Text(
+                                'Are you sure you want to delete this compigin?',
+                              ),
+
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    campaignApi.deleteCampaign(
+                                      campaignsList[index].campaignId,
+                                    );
+                                  },
+
+                                  child: const Text('Close'),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      },
+                    ),
+                  ),
+
+                  // Space for the image
+                  Positioned(
+                    top: 5,
+                    left: 5,
+                    child: IconButton(
+                      icon: const Icon(Icons.edit, color: Colors.red),
+                      onPressed: () {
+                        final controllerName = TextEditingController(
+                          text: campaignsList[index].title,
+                        );
+                        final controllerDescription = TextEditingController(
+                          text: campaignsList[index].description,
+                        );
+                        final controllerDonationNumber = TextEditingController(
+                          text: campaignsList[index].targetAmount.toString(),
+                        );
+
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: const Text('Edit Campaign'),
+
+                              content: Column(
+                                children: [
+                                  TextField(
+                                    controller: controllerName,
+
+                                    decoration: const InputDecoration(
+                                      hintText: 'Enter new name',
+                                    ),
+                                  ),
+                                  TextField(
+                                    controller: controllerDescription,
+
+                                    decoration: const InputDecoration(
+                                      hintText: 'Enter new description',
+                                    ),
+                                  ),
+                                  TextField(
+                                    controller: controllerDonationNumber,
+
+                                    decoration: const InputDecoration(
+                                      hintText: 'Enter new donation number',
+                                    ),
+                                  ),
+                                ],
+                              ),
+
+                              actions: [
+                                // SAVE
+                                TextButton(
+                                  onPressed: () async {
+                                    await campaignApi.updateCampaign(
+                                      campaignsList[index].campaignId,
+                                      controllerName.text,
+                                      double.parse(
+                                        controllerDonationNumber.text,
+                                      ),
+
+                                      controllerDescription.text,
+                                    );
+                                    getCampaigns(widget.instatiosnId);
+
+                                    Navigator.pop(context);
+                                  },
+
+                                  child: const Text('Save'),
+                                ),
+
+                                // CANCEL
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+
+                                  child: const Text('Cancel'),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                ],
               );
             },
           ),

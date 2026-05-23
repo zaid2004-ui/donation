@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class CampaaignModel {
   final String campaignId;
   final String categoryId;
-  final String institutionId;
+  final List<String> institutionId;
   final String title;
   final String description;
   final String imageUrl;
@@ -28,36 +28,26 @@ class CampaaignModel {
   });
 
   factory CampaaignModel.fromJson(Map<String, dynamic> json, String docID) {
-    // References
-    String parseRef(dynamic ref) {
-      if (ref is DocumentReference) return ref.id;
-      if (ref is String) return ref;
-      return '';
-    }
-
-    // Timestamps
-    DateTime parseDate(dynamic date) {
-      if (date is Timestamp) return date.toDate();
-      if (date is String) return DateTime.tryParse(date) ?? DateTime.now();
-      return DateTime.now();
-    }
-
     return CampaaignModel(
       campaignId: docID,
-      // Category و Institution
-      categoryId: parseRef(json['Category_ID']),
-      institutionId: parseRef(json['Institution_ID']),
+
+      categoryId: json['Category_ID'] is DocumentReference
+          ? (json['Category_ID'] as DocumentReference).id
+          : (json['Category_ID'] ?? ''),
+
+      institutionId: (json['Institution_IDs'] as List? ?? [])
+          .map((item) => item is DocumentReference ? item.id : item.toString())
+          .toList(),
 
       title: json['Title'] ?? '',
       description: json['Description'] ?? '',
       imageUrl: json['Image_URL'] ?? '',
 
-      //  timestamp
-      createdAt: parseDate(json['Created_At']),
-      startDate: parseDate(json['Start_Date']),
-      endDate: parseDate(json['End_Date']),
+      createdAt: (json['Created_At'] as Timestamp? ?? Timestamp.now()).toDate(),
+      startDate: (json['Start_Date'] as Timestamp? ?? Timestamp.now()).toDate(),
+      endDate: (json['End_Date'] as Timestamp? ?? Timestamp.now()).toDate(),
 
-      targetAmount: json['Target_Amount'] ?? 0,
+      targetAmount: (json['Target_Amount'] ?? 0).toDouble(),
       isActive: json['Is_Active'] ?? true,
     );
   }
