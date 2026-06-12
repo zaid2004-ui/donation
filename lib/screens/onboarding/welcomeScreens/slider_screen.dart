@@ -23,7 +23,7 @@ class _SliderscreenState extends State<Sliderscreen> {
           onPageChanged: (index, reason) => setState(() {
             count = index;
           }),
-          height: 800,
+          height: MediaQuery.of(context).size.height,
           initialPage: 0,
           autoPlay: false,
           enableInfiniteScroll: false,

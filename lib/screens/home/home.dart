@@ -6,13 +6,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:plasess/Riverpod/navebar.dart';
-import 'package:plasess/router/app_route.dart';
-import 'package:plasess/router/route.dart';
+import 'package:plasess/core/router/app_route.dart';
+import 'package:plasess/core/router/route.dart';
+import 'package:plasess/i18n/generated/app_localizations.dart';
+import 'package:plasess/screens/Donation_process/my_donation.dart';
 import 'package:plasess/screens/home/api_category/category_api.dart';
 import 'package:plasess/screens/home/api_category/category_model.dart';
 import 'package:plasess/screens/home/drawer.dart';
 import 'package:plasess/screens/profile/profile.dart';
-import 'package:plasess/theme/app_icons.dart';
+import 'package:plasess/core/theme/app_icons.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Home extends ConsumerStatefulWidget {
@@ -25,6 +27,99 @@ class Home extends ConsumerStatefulWidget {
 class _HomeState extends ConsumerState<Home>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
+
+  // Admin actions for category card
+  Widget buildAdminActions(int index) {
+    return Positioned(
+      top: 5,
+      right: 5,
+      left: 5,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          IconButton(
+            icon: Icon(
+              AppIcons.delete,
+              color: Theme.of(context).colorScheme.onSurface,
+            ),
+            onPressed: () async {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    title: Text(AppLocalizations.of(context)!.delete_category),
+                    content: Text(
+                      AppLocalizations.of(context)!.confirm_delete_category,
+                    ),
+                    actions: [
+                      TextButton(
+                        onPressed: () async {
+                          await categoryApi.deleteCategory(
+                            cateogryList[index].categoryId,
+                          );
+
+                          if (!context.mounted) return;
+
+                          Navigator.pop(context);
+                          await getCategories();
+                        },
+                        child: Text(
+                          AppLocalizations.of(context)!.delete_category,
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
+          ),
+          Spacer(),
+          IconButton(
+            icon: Icon(
+              AppIcons.edit,
+              color: Theme.of(context).colorScheme.onSurface,
+            ),
+            onPressed: () {
+              final controller = TextEditingController(
+                text: cateogryList[index].name,
+              );
+
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    title: Text(AppLocalizations.of(context)!.edit_category),
+                    content: TextField(controller: controller),
+                    actions: [
+                      TextButton(
+                        onPressed: () async {
+                          await categoryApi.updateCategory(
+                            cateogryList[index].categoryId,
+                            controller.text,
+                          );
+
+                          if (!context.mounted) return;
+
+                          Navigator.pop(context);
+                          await getCategories();
+                        },
+                        child: Text(AppLocalizations.of(context)!.save),
+                      ),
+                      TextButton(
+                        onPressed: () => Navigator.pop(context),
+                        child: Text(AppLocalizations.of(context)!.cancel),
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
   String role = "User";
   // Get user role from Firestore
   Future<void> getRole() async {
@@ -57,6 +152,7 @@ class _HomeState extends ConsumerState<Home>
     super.dispose();
   }
 
+  // API and data for categories
   final categoryApi = CategoryApi();
   List<CateogryModel> cateogryList = [];
   bool isLoding = true;
@@ -67,10 +163,13 @@ class _HomeState extends ConsumerState<Home>
     setState(() {});
   }
 
+  //slider controler
   final CarouselSliderController sliderController = CarouselSliderController();
   int controller = 0;
   @override
   Widget build(BuildContext context) {
+    final isAr = Localizations.localeOf(context).languageCode == 'ar';
+
     // log('roooooooooooll :' + role);
     return Scaffold(
       drawer: AppDrawer(),
@@ -91,6 +190,8 @@ class _HomeState extends ConsumerState<Home>
           final index = ref.watch(navbarPorvider);
           switch (index) {
             case 1:
+              return MyDonations();
+            case 2:
               return Profile();
             case 0:
               return ListView(
@@ -100,10 +201,19 @@ class _HomeState extends ConsumerState<Home>
                     padding: EdgeInsets.all(10),
                     width: double.infinity,
                     decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Theme.of(context).colorScheme.surface,
+                          blurRadius: 10,
+                          spreadRadius: 0.5,
+                        ),
+                      ],
                       color: Theme.of(context).colorScheme.surface,
                     ),
                     child: Column(
                       children: [
+                        //slider
                         CarouselSlider(
                           carouselController: sliderController,
 
@@ -149,145 +259,111 @@ class _HomeState extends ConsumerState<Home>
                     ),
                   ),
                   //gridview builder
-                  GridView.builder(
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: 200,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10,
-                      childAspectRatio: 1.0,
-                    ),
-                    itemCount: cateogryList.length,
-                    itemBuilder: (context, index) {
-                      return Stack(
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              final id = cateogryList[index].categoryId;
-                              log('Tapped categoryId: $id'); // تيست
-                              AppRouter.pushNamed(
-                                Routes.institutions,
-                                args: cateogryList[index].categoryId,
-                              );
-                            },
-                            child: Card(
-                              margin: EdgeInsets.all(5),
-                              color: Theme.of(context).colorScheme.surface,
-                              child: Column(
-                                children: [
-                                  // Image.network(''),
-                                  Image.asset('assets/images/logo.png'),
-                                  SizedBox(height: 10),
-                                  Text(
-                                    cateogryList[index].name,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          if (role == "Admin")
-                            // Edit button for admin
-                            Positioned(
-                              top: 5,
-                              right: 5,
-                              child: IconButton(
-                                icon: const Icon(
-                                  Icons.delete,
-                                  color: Colors.red,
-                                ),
-                                onPressed: () {
-                                  showDialog(
-                                    context: context,
-                                    builder: (context) {
-                                      return AlertDialog(
-                                        title: const Text('Delete Category'),
-
-                                        content: const Text(
-                                          'Are you sure you want to delete this category?',
-                                        ),
-
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () {
-                                              categoryApi.deleteCategory(
-                                                cateogryList[index].categoryId,
-                                              );
-                                              setState(() {});
-                                            },
-
-                                            child: const Text('Close'),
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  );
-                                },
-                              ),
-                            ),
-                          // Edit button for admin
-                          Positioned(
-                            top: 5,
-                            left: 5,
-                            child: IconButton(
-                              icon: const Icon(Icons.edit, color: Colors.red),
-                              onPressed: () {
-                                final controller = TextEditingController(
-                                  text: cateogryList[index].name,
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: GridView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                        maxCrossAxisExtent: 200,
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 10,
+                        childAspectRatio: 0.75,
+                      ),
+                      itemCount: cateogryList.length,
+                      itemBuilder: (context, index) {
+                        return Stack(
+                          children: [
+                            InkWell(
+                              // Navigate to institutions screen with categoryId
+                              onTap: () {
+                                final id = cateogryList[index].categoryId;
+                                log('Tapped categoryId: $id'); // test
+                                AppRouter.pushNamed(
+                                  Routes.institutions,
+                                  args: cateogryList[index].categoryId,
                                 );
-
-                                showDialog(
-                                  context: context,
-                                  builder: (context) {
-                                    return AlertDialog(
-                                      title: const Text('Edit Category'),
-
-                                      content: TextField(
-                                        controller: controller,
-
-                                        decoration: const InputDecoration(
-                                          hintText: 'Enter new name',
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.all(2),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(16),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.surface.withAlpha(64),
+                                      blurRadius: 12,
+                                      spreadRadius: 1,
+                                      offset: const Offset(0, 4),
+                                    ),
+                                  ],
+                                ),
+                                child: Card(
+                                  margin: const EdgeInsets.all(0),
+                                  elevation: 0,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(16),
+                                  ),
+                                  clipBehavior: Clip.antiAlias,
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.surfaceContainerHighest,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.stretch,
+                                    children: [
+                                      //image
+                                      SizedBox(
+                                        height: 120,
+                                        child: Image.network(
+                                          cateogryList[index].image,
+                                          fit: BoxFit.cover,
+                                          errorBuilder:
+                                              (context, error, stackTrace) {
+                                                return Image.asset(
+                                                  'assets/images/welcom1.png',
+                                                  fit: BoxFit.cover,
+                                                );
+                                              },
                                         ),
                                       ),
 
-                                      actions: [
-                                        // SAVE
-                                        TextButton(
-                                          onPressed: () async {
-                                            await categoryApi.updateCategory(
-                                              cateogryList[index].categoryId,
-                                              controller.text,
-                                            );
+                                      const SizedBox(height: 10),
 
-                                            Navigator.pop(context);
-
-                                            getCategories();
-                                          },
-
-                                          child: const Text('Save'),
+                                      // TEXT
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                          bottom: 1,
                                         ),
-
-                                        // CANCEL
-                                        TextButton(
-                                          onPressed: () {
-                                            Navigator.pop(context);
-                                          },
-
-                                          child: const Text('Cancel'),
+                                        child: Text(
+                                          isAr
+                                              ? (cateogryList[index].nameAr ??
+                                                    cateogryList[index].name)
+                                              : (cateogryList[index].nameEn ??
+                                                    cateogryList[index].name),
+                                          textAlign: TextAlign.center,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleLarge!
+                                              .copyWith(
+                                                color: Theme.of(
+                                                  context,
+                                                ).colorScheme.onSurface,
+                                                fontWeight: FontWeight.w600,
+                                              ),
                                         ),
-                                      ],
-                                    );
-                                  },
-                                );
-                              },
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
-                        ],
-                      );
-                    },
+                            if (role == "Admin") buildAdminActions(index),
+                          ],
+                        );
+                      },
+                    ),
                   ),
                 ],
               );
@@ -304,13 +380,22 @@ class _HomeState extends ConsumerState<Home>
           return CurvedNavigationBar(
             index: index,
             items: [
-              Icon(AppIcons.home, color: Theme.of(context).colorScheme.onError),
+              Icon(
+                AppIcons.home,
+                color: Theme.of(context).colorScheme.onSurface,
+              ),
+              Icon(
+                AppIcons.volunteer,
+                color: Theme.of(context).colorScheme.onSurface,
+              ),
               Icon(
                 AppIcons.profile,
-                color: Theme.of(context).colorScheme.onError,
+                color: Theme.of(context).colorScheme.onSurface,
               ),
             ],
-            backgroundColor: Theme.of(context).colorScheme.onPrimary,
+            backgroundColor: Theme.of(
+              context,
+            ).colorScheme.onSurface.withAlpha(1),
             color: Theme.of(context).colorScheme.primary,
             onTap: (value) => ref.read(navbarPorvider.notifier).state = value,
           );

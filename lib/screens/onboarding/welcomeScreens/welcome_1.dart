@@ -1,8 +1,9 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:plasess/core/generalWidgetForME/general_widget.dart';
 import 'package:plasess/i18n/generated/app_localizations.dart';
-import 'package:plasess/router/app_route.dart';
-import 'package:plasess/router/route.dart';
+import 'package:plasess/core/router/app_route.dart';
+import 'package:plasess/core/router/route.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Welcome1 extends StatelessWidget {
@@ -22,7 +23,7 @@ class Welcome1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int maxpage = 2;
+    const int maxpage = 2;
 
     return Scaffold(
       body: Column(
@@ -58,11 +59,17 @@ class Welcome1 extends StatelessWidget {
                 child: ListTile(
                   title: Text(
                     title ?? 'Erorre',
-                    style: Theme.of(context).textTheme.titleLarge!.copyWith(),
+                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
                   ),
                   subtitle: Text(
                     subtitle ?? 'Erorre',
-                    style: Theme.of(context).textTheme.bodySmall!.copyWith(),
+                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                      color: Theme.of(
+                        context,
+                      ).colorScheme.onSurface.withValues(alpha: 0.8),
+                    ),
                   ),
                 ),
               ),
@@ -87,49 +94,28 @@ class Welcome1 extends StatelessWidget {
                     child: Row(
                       children: [
                         //butoon skip
-                        ElevatedButton(
-                          onPressed: () {
+                        GeneralWidget().getElevatedButtonOnbording(
+                          context,
+                          AppLocalizations.of(context)!.skip,
+                          () {
                             AppRouter.pushNamed(Routes.login);
                           },
-
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Theme.of(
-                              context,
-                            ).colorScheme.onPrimary,
-                          ),
-                          child: Text(
-                            AppLocalizations.of(context)!.skip,
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                          ),
                         ),
 
                         Spacer(),
                         //butoon next
-                        ElevatedButton(
-                          onPressed: () {
+                        GeneralWidget().getElevatedButtonOnbording(
+                          context,
+                          AppLocalizations.of(context)!.next,
+                          () {
                             if (index! < maxpage - 1) {
                               controller!.nextPage();
-                              Duration(seconds: 1);
                             }
                             Curves.easeInCirc;
                             if (index == 1) {
                               AppRouter.pushNamed(Routes.login);
                             }
                           },
-
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Theme.of(
-                              context,
-                            ).colorScheme.onPrimary,
-                          ),
-                          child: Text(
-                            AppLocalizations.of(context)!.next,
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                          ),
                         ),
                       ],
                     ),
@@ -150,7 +136,9 @@ class Welcome1 extends StatelessWidget {
                       dotHeight: 10.0,
                       paintStyle: PaintingStyle.stroke,
                       strokeWidth: 1.5,
-                      dotColor: const Color.fromARGB(255, 0, 0, 0),
+                      dotColor: Theme.of(
+                        context,
+                      ).colorScheme.onPrimary.withValues(alpha: 0.8),
                       activeDotColor: Theme.of(context).colorScheme.onPrimary,
                     ),
                     activeIndex: index ?? 0,
@@ -206,16 +194,16 @@ class WavePainter extends CustomPainter {
     // Draw fill
     canvas.drawPath(path, paintFill);
 
-    // Paint for stroke
-    Paint paintStroke = Paint()
-      ..color = const Color.fromARGB(255, 33, 150, 243)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 0
-      ..strokeCap = StrokeCap.butt
-      ..strokeJoin = StrokeJoin.miter;
+    // // Paint for stroke
+    // Paint paintStroke = Paint()
+    //   ..color = const Color.fromARGB(255, 33, 150, 243)
+    //   ..style = PaintingStyle.stroke
+    //   ..strokeWidth = 0
+    //   ..strokeCap = StrokeCap.butt
+    //   ..strokeJoin = StrokeJoin.miter;
 
     // Draw stroke
-    canvas.drawPath(path, paintStroke);
+    // canvas.drawPath(path, paintStroke);
   }
 
   @override

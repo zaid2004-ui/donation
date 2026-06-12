@@ -147,5 +147,205 @@
   "faq_a5": "Institutions are reviewed and approved by the admin before being published.",
   "@faq_a5": {
     "description": "Answer to the fifth FAQ question"
+  },
+  "required_field": "This field is required",
+  "@required_field": {
+    "description": "Validation message when the field is empty"
+  },
+  "invalid_email": "Enter a valid email",
+  "@invalid_email": {
+    "description": "Validation message for invalid email format"
+  },
+  "password_length": "Password must be between 8 and 12 characters",
+  "@password_length": {
+    "description": "Validation message for password length requirement"
+  },
+  "password_match": "Password and confirm password must match",
+  "@password_match": {
+    "description": "Validation message when password and confirm password do not match"
+  },
+  "enter_email": "Please enter your email",
+  "@enter_email": {
+    "description": "Message asking the user to enter their email"
+  },
+  "verify_email_before_login": "Please verify your email before logging in.",
+  "@verify_email_before_login": {
+    "description": "Message asking the user to verify their email before logging in"
+  },
+  "no_user_found_email": "No user found for that email",
+  "@no_user_found_email": {
+    "description": "Message shown when no user is found for the entered email"
+  },
+  "wrong_password": "Wrong password provided for that user",
+  "@wrong_password": {
+    "description": "Message shown when an incorrect password is entered for the user"
+  },
+  "login_failed": "Login failed",
+  "@login_failed": {
+    "description": "General message when login attempt fails"
+  },
+  "verification_email_sent": "Verification email sent. Please check your email and confirm your account.",
+  "@verification_email_sent": {
+    "description": "Message shown after sending the verification email to the user"
+  },
+  "weak_password": "The password provided is too weak",
+  "@weak_password": {
+    "description": "Message shown when the provided password is too weak"
+  },
+  "email_already_exists": "The account already exists for that email",
+  "@email_already_exists": {
+    "description": "Message shown when an account already exists for the entered email"
+  },
+  "signed_in_successfully": "Signed in successfully",
+  "@signed_in_successfully": {
+    "description": "Message shown when the user signs in successfully"
+  },
+  "phone": "Phone",
+  "@phone": {
+    "description": "Phone number field label"
+  },
+  "reset_password": "Reset password",
+  "@reset_password": {
+    "description": "Reset password button or screen title"
+  },
+  "something_went_wrong": "Something went wrong",
+  "@something_went_wrong": {
+    "description": "Generic error message when an unexpected error occurs"
+  },
+  "password_reset_email_sent": "Password reset email sent",
+  "@password_reset_email_sent": {
+    "description": "Message shown when the password reset email is successfully sent"
+  },
+  "delete_category": "Delete Category",
+  "@delete_category": {
+    "description": "Button or action label for deleting a category"
+  },
+  "confirm_delete_category": "Are you sure you want to delete this category?",
+  "@confirm_delete_category": {
+    "description": "Confirmation message before deleting a category"
+  },
+  "edit_category": "Edit Category",
+  "@edit_category": {
+    "description": "Button or title label for editing a category"
+  },
+  "save": "Save",
+  "@save": {
+    "description": "Save button label"
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Cancel button label"
+  },
+  "institutions": "Institutions",
+  "@institutions": {
+    "description": "Institutions label or title"
+  },
+  "update_institution": "Update Institution",
+  "@update_institution": {
+    "description": "Button or title label for updating an institution"
+  },
+  "confirm_delete_institution": "Are you sure you want to delete this institution?",
+  "@confirm_delete_institution": {
+    "description": "Confirmation message before deleting an institution"
+  },
+  "delete_institution": "Delete Institution",
+  "@delete_institution": {
+    "description": "Button or title label for deleting an institution"
+  },
+  "enter_new_name": "Enter new name",
+  "@enter_new_name": {
+    "description": "Input field for new name"
+  },
+  "enter_new_description": "Enter new description",
+  "@enter_new_description": {
+    "description": "Input field for new description"
+  },
+  "enter_new_donation_number": "Enter new donation number",
+  "@enter_new_donation_number": {
+    "description": "Input field for new donation number"
+  },
+  "delete_campaign": "Delete Campaign",
+  "@delete_campaign": {
+    "description": "Button or title label for deleting a campaign"
+  },
+  "confirm_delete_campaign": "Are you sure you want to delete this campaign?",
+  "@confirm_delete_campaign": {
+    "description": "Confirmation message before deleting a campaign"
+  },
+  "delete_campaigns": "Delete Campaign",
+  "@delete_campaigns": {
+    "description": "Button or title label for deleting a campaign"
+  },
+  "edit_campaign": "Edit Campaign",
+  "@edit_campaign": {
+    "description": "Button or title label for editing a campaign"
+  },
+  "amount": "Amount",
+  "@amount": {
+    "description": "Amount input field"
+  },
+  "click": "Click",
+  "@click": {
+    "description": "Generic click text"
+  },
+  "card": "Card",
+  "@card": {
+    "description": "Payment method card label"
+  },
+  "card_number": "Card Number",
+  "@card_number": {
+    "description": "Input field for card number"
+  },
+  "enter_valid_amount": "Enter valid amount",
+  "@enter_valid_amount": {
+    "description": "Validation message for invalid amount"
+  },
+  "donation_successful": "Donation Successful",
+  "@donation_successful": {
+    "description": "Success message after donation"
+  },
+  "donate": "Donate",
+  "@donate": {
+    "description": "Donate button label"
+  },
+  "active": "Active",
+  "@active": {
+    "description": "Active status"
+  },
+  "inactive": "Inactive",
+  "@inactive": {
+    "description": "Inactive status"
+  },
+  "admin_dashboard": "Admin Dashboard",
+  "@admin_dashboard": {
+    "description": "Admin dashboard title"
+  },
+  "add_category": "Add Category",
+  "@add_category": {
+    "description": "Button to add a new category"
+  },
+  "add_institution": "Add Institution",
+  "@add_institution": {
+    "description": "Button to add a new institution"
+  },
+  "add_campaign": "Add Campaign",
+  "@add_campaign": {
+    "description": "Button to add a new campaign"
+  },
+  "welcome_admin": "Welcome Admin",
+  "@welcome_admin": {
+    "description": "Welcome message for admin user"
+  },
+  "manage_app_here": "Manage the application from here",
+  "@manage_app_here": {
+    "description": "Instruction text in admin dashboard"
+  },
+  "category_name": "Category Name",
+  "@category_name": {
+    "description": "Category name field"
+  },
+  "image_url": "Image URL",
+  "@image_url": {
+    "description": "Image URL field"
   }
 }

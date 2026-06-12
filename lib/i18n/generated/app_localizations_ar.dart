@@ -121,4 +121,160 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get faq_a5 =>
       'يتم مراجعة المؤسسات والموافقة عليها من قبل المشرف قبل نشرها.';
+
+  @override
+  String get required_field => 'هذا الحقل مطلوب';
+
+  @override
+  String get invalid_email => 'أدخل بريد إلكتروني صحيح';
+
+  @override
+  String get password_length => 'كلمة المرور يجب أن تكون بين 8 و 12 حرف';
+
+  @override
+  String get password_match =>
+      'كلمة المرور وتأكيد كلمة المرور يجب أن تكونا متطابقتين';
+
+  @override
+  String get enter_email => 'يرجى إدخال بريدك الإلكتروني';
+
+  @override
+  String get verify_email_before_login =>
+      'يرجى التحقق من بريدك الإلكتروني قبل تسجيل الدخول';
+
+  @override
+  String get no_user_found_email =>
+      'لم يتم العثور على مستخدم لهذا البريد الإلكتروني';
+
+  @override
+  String get wrong_password => 'تم إدخال كلمة مرور غير صحيحة لهذا المستخدم';
+
+  @override
+  String get login_failed => 'فشل تسجيل الدخول';
+
+  @override
+  String get verification_email_sent =>
+      'تم إرسال بريد التحقق. يرجى التحقق من بريدك الإلكتروني وتأكيد حسابك.';
+
+  @override
+  String get weak_password => 'كلمة المرور المقدمة ضعيفة جدًا';
+
+  @override
+  String get email_already_exists => 'يوجد حساب بالفعل لهذا البريد الإلكتروني';
+
+  @override
+  String get signed_in_successfully => 'تم تسجيل الدخول بنجاح';
+
+  @override
+  String get phone => 'رقم الهاتف';
+
+  @override
+  String get reset_password => 'إعادة تعيين كلمة المرور';
+
+  @override
+  String get something_went_wrong => 'حدث خطأ ما';
+
+  @override
+  String get password_reset_email_sent =>
+      'تم إرسال بريد إعادة تعيين كلمة المرور';
+
+  @override
+  String get delete_category => 'حذف الفئة';
+
+  @override
+  String get confirm_delete_category => 'هل أنت متأكد أنك تريد حذف هذه الفئة؟';
+
+  @override
+  String get edit_category => 'تعديل الفئة';
+
+  @override
+  String get save => 'حفظ';
+
+  @override
+  String get cancel => 'إلغاء';
+
+  @override
+  String get institutions => 'المؤسسات';
+
+  @override
+  String get update_institution => 'تحديث المؤسسة';
+
+  @override
+  String get confirm_delete_institution =>
+      'هل أنت متأكد أنك تريد حذف هذه المؤسسة؟';
+
+  @override
+  String get delete_institution => 'حذف المؤسسة';
+
+  @override
+  String get enter_new_name => 'أدخل الاسم الجديد';
+
+  @override
+  String get enter_new_description => 'أدخل الوصف الجديد';
+
+  @override
+  String get enter_new_donation_number => 'أدخل رقم التبرع الجديد';
+
+  @override
+  String get delete_campaign => 'حذف الحملة';
+
+  @override
+  String get confirm_delete_campaign => 'هل أنت متأكد أنك تريد حذف هذه الحملة؟';
+
+  @override
+  String get delete_campaigns => 'حذف الحملات';
+
+  @override
+  String get edit_campaign => 'تعديل الحملة';
+
+  @override
+  String get amount => 'المبلغ';
+
+  @override
+  String get click => 'اضغط';
+
+  @override
+  String get card => 'بطاقة';
+
+  @override
+  String get card_number => 'رقم البطاقة';
+
+  @override
+  String get enter_valid_amount => 'أدخل مبلغ صحيح';
+
+  @override
+  String get donation_successful => 'تم التبرع بنجاح';
+
+  @override
+  String get donate => 'تبرع';
+
+  @override
+  String get active => 'نشط';
+
+  @override
+  String get inactive => 'غير نشط';
+
+  @override
+  String get admin_dashboard => 'لوحة تحكم المدير';
+
+  @override
+  String get add_category => 'إضافة فئة';
+
+  @override
+  String get add_institution => 'إضافة مؤسسة';
+
+  @override
+  String get add_campaign => 'إضافة حملة';
+
+  @override
+  String get welcome_admin => 'مرحباً بالمدير';
+
+  @override
+  String get manage_app_here => 'يمكنك إدارة التطبيق من هنا';
+
+  @override
+  String get category_name => 'اسم الفئة';
+
+  @override
+  String get image_url => 'رابط الصورة';
 }

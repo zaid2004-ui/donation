@@ -44,9 +44,11 @@ class CategoryApi {
     await docRef.set({
       'CategoryId': docRef.id,
       'Name': category.name,
-      'image': category.image,
+      'Image_URL': category.image,
       'IS_Active': category.isActeve,
       'Created_At': Timestamp.fromDate(category.createdAt),
+      'nameAr': category.name,
+      'nameEn': category.name,
     });
 
     return docRef.id;

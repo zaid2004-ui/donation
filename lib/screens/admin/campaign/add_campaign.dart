@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:plasess/core/generalWidgetForME/general_widget.dart';
+import 'package:plasess/i18n/generated/app_localizations.dart';
 import 'package:plasess/screens/home/api_category/category_api.dart';
 import 'package:plasess/screens/home/api_category/category_model.dart';
 import 'package:plasess/screens/institutions/institutions_model.dart';
@@ -72,29 +74,37 @@ class _AddCampaignPageState extends State<AddCampaignPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Add Campaign")),
+      appBar: AppBar(title: Text(AppLocalizations.of(context)!.add_campaign)),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            TextField(
+            // TITLE
+            GeneralWidget().getTextFormField(
+              context,
+              "Title",
               controller: titleController,
-              decoration: const InputDecoration(labelText: "Title"),
             ),
-            const SizedBox(height: 10),
 
-            TextField(
+            const SizedBox(height: 10),
+            // DESCRIPTION
+            GeneralWidget().getTextFormField(
+              context,
+              "Description",
               controller: descriptionController,
-              decoration: const InputDecoration(labelText: "Description"),
             ),
+
             const SizedBox(height: 10),
 
-            TextField(
+            // IMAGE URL
+            GeneralWidget().getTextFormField(
+              context,
+              "Image URL",
               controller: imageController,
-              decoration: const InputDecoration(labelText: "Image URL"),
             ),
-            const SizedBox(height: 10),
 
+            const SizedBox(height: 10),
+            // TARGET AMOUNT
             TextField(
               controller: targetController,
               keyboardType: TextInputType.number,
@@ -104,7 +114,7 @@ class _AddCampaignPageState extends State<AddCampaignPage> {
 
             /// CATEGORY
             DropdownButtonFormField<String>(
-              value: selectedCategoryId,
+              initialValue: selectedCategoryId,
               items: categories.map((cat) {
                 return DropdownMenuItem(
                   value: cat.categoryId,
@@ -117,7 +127,7 @@ class _AddCampaignPageState extends State<AddCampaignPage> {
 
             const SizedBox(height: 15),
 
-            /// 🔥 MULTI SELECT INSTITUTIONS
+            ///  MULTI SELECT INSTITUTIONS
             Column(
               children: institutions.map((inst) {
                 return CheckboxListTile(
@@ -163,19 +173,37 @@ class _AddCampaignPageState extends State<AddCampaignPage> {
 
             const SizedBox(height: 20),
 
-            ElevatedButton(
-              onPressed: () async {
+            /// ADD CAMPAIGN BUTTON
+            GeneralWidget().getElevatedButton(
+              context,
+              "Add Campaign",
+              () async {
                 if (selectedCategoryId == null ||
                     selectedInstitutionIds.isEmpty ||
                     startDate == null ||
                     endDate == null) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text("Fill all fields")),
+                  GeneralWidget().showErrorMessage(context, "Fill all fields");
+
+                  return;
+                }
+                // Validate dates
+                if (endDate!.isBefore(startDate!)) {
+                  GeneralWidget().showErrorMessage(
+                    context,
+                    "End date cannot be before start date",
                   );
                   return;
                 }
 
-                /// 🔥 تحويل IDs إلى References
+                if (endDate!.isAtSameMomentAs(startDate!)) {
+                  GeneralWidget().showErrorMessage(
+                    context,
+                    "End date must be after start date",
+                  );
+                  return;
+                }
+
+                // Convert institution IDs to DocumentReferences
                 List<DocumentReference> institutionRefs = selectedInstitutionIds
                     .map((id) {
                       return firestore
@@ -209,11 +237,9 @@ class _AddCampaignPageState extends State<AddCampaignPage> {
                       'Is_Active': true,
                     });
 
-                ScaffoldMessenger.of(
-                  context,
-                ).showSnackBar(const SnackBar(content: Text("Campaign Added")));
+                if (!context.mounted) return;
+                GeneralWidget().showSucessMessage(context, "Campaign Added");
               },
-              child: const Text("Add Campaign"),
             ),
           ],
         ),

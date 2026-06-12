@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:plasess/i18n/generated/app_localizations.dart';
-import 'package:plasess/router/app_route.dart';
-import 'package:plasess/router/route.dart';
+import 'package:plasess/core/router/app_route.dart';
+import 'package:plasess/core/router/route.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

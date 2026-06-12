@@ -151,5 +151,205 @@
   "faq_a5": "يتم مراجعة المؤسسات والموافقة عليها من قبل المشرف قبل نشرها.",
   "@faq_a5": {
     "description": "إجابة السؤال الخامس"
+  },
+  "required_field": "هذا الحقل مطلوب",
+  "@required_field": {
+    "description": "رسالة تحقق عند ترك الحقل فارغ"
+  },
+  "invalid_email": "أدخل بريد إلكتروني صحيح",
+  "@invalid_email": {
+    "description": "رسالة تحقق عند إدخال بريد إلكتروني غير صالح"
+  },
+  "password_length": "كلمة المرور يجب أن تكون بين 8 و 12 حرف",
+  "@password_length": {
+    "description": "رسالة تحقق لطول كلمة المرور"
+  },
+  "password_match": "كلمة المرور وتأكيد كلمة المرور يجب أن تكونا متطابقتين",
+  "@password_match": {
+    "description": "رسالة تحقق عند عدم تطابق كلمة المرور مع التأكيد"
+  },
+  "enter_email": "يرجى إدخال بريدك الإلكتروني",
+  "@enter_email": {
+    "description": "رسالة تطلب من المستخدم إدخال البريد الإلكتروني"
+  },
+  "verify_email_before_login": "يرجى التحقق من بريدك الإلكتروني قبل تسجيل الدخول",
+  "@verify_email_before_login": {
+    "description": "رسالة تطلب من المستخدم التحقق من البريد الإلكتروني قبل تسجيل الدخول"
+  },
+  "no_user_found_email": "لم يتم العثور على مستخدم لهذا البريد الإلكتروني",
+  "@no_user_found_email": {
+    "description": "رسالة تظهر عند عدم العثور على مستخدم مرتبط بالبريد الإلكتروني"
+  },
+  "wrong_password": "تم إدخال كلمة مرور غير صحيحة لهذا المستخدم",
+  "@wrong_password": {
+    "description": "رسالة تظهر عند إدخال كلمة مرور خاطئة للمستخدم"
+  },
+  "login_failed": "فشل تسجيل الدخول",
+  "@login_failed": {
+    "description": "رسالة عامة عند فشل عملية تسجيل الدخول"
+  },
+  "verification_email_sent": "تم إرسال بريد التحقق. يرجى التحقق من بريدك الإلكتروني وتأكيد حسابك.",
+  "@verification_email_sent": {
+    "description": "رسالة تظهر بعد إرسال بريد التحقق للمستخدم"
+  },
+  "weak_password": "كلمة المرور المقدمة ضعيفة جدًا",
+  "@weak_password": {
+    "description": "رسالة تظهر عند إدخال كلمة مرور ضعيفة"
+  },
+  "email_already_exists": "يوجد حساب بالفعل لهذا البريد الإلكتروني",
+  "@email_already_exists": {
+    "description": "رسالة تظهر عند وجود حساب مرتبط بالبريد الإلكتروني المدخل"
+  },
+  "signed_in_successfully": "تم تسجيل الدخول بنجاح",
+  "@signed_in_successfully": {
+    "description": "رسالة تظهر عند نجاح تسجيل الدخول"
+  },
+  "phone": "رقم الهاتف",
+  "@phone": {
+    "description": "حقل رقم الهاتف"
+  },
+  "reset_password": "إعادة تعيين كلمة المرور",
+  "@reset_password": {
+    "description": "نص زر أو عنوان إعادة تعيين كلمة المرور"
+  },
+  "something_went_wrong": "حدث خطأ ما",
+  "@something_went_wrong": {
+    "description": "رسالة عامة عند حدوث خطأ غير متوقع"
+  },
+  "password_reset_email_sent": "تم إرسال بريد إعادة تعيين كلمة المرور",
+  "@password_reset_email_sent": {
+    "description": "رسالة تظهر عند إرسال بريد إعادة تعيين كلمة المرور بنجاح"
+  },
+  "delete_category": "حذف الفئة",
+  "@delete_category": {
+    "description": "نص زر أو إجراء حذف الفئة"
+  },
+  "confirm_delete_category": "هل أنت متأكد أنك تريد حذف هذه الفئة؟",
+  "@confirm_delete_category": {
+    "description": "رسالة تأكيد قبل حذف الفئة"
+  },
+  "edit_category": "تعديل الفئة",
+  "@edit_category": {
+    "description": "نص زر أو عنوان تعديل الفئة"
+  },
+  "save": "حفظ",
+  "@save": {
+    "description": "نص زر الحفظ"
+  },
+  "cancel": "إلغاء",
+  "@cancel": {
+    "description": "نص زر الإلغاء"
+  },
+  "institutions": "المؤسسات",
+  "@institutions": {
+    "description": "عنوان أو تسمية المؤسسات"
+  },
+  "update_institution": "تحديث المؤسسة",
+  "@update_institution": {
+    "description": "نص زر أو عنوان تحديث المؤسسة"
+  },
+  "confirm_delete_institution": "هل أنت متأكد أنك تريد حذف هذه المؤسسة؟",
+  "@confirm_delete_institution": {
+    "description": "رسالة تأكيد قبل حذف المؤسسة"
+  },
+  "delete_institution": "حذف المؤسسة",
+  "@delete_institution": {
+    "description": "نص زر أو عنوان حذف المؤسسة"
+  },
+  "enter_new_name": "أدخل الاسم الجديد",
+  "@enter_new_name": {
+    "description": "حقل إدخال الاسم الجديد"
+  },
+  "enter_new_description": "أدخل الوصف الجديد",
+  "@enter_new_description": {
+    "description": "حقل إدخال الوصف الجديد"
+  },
+  "enter_new_donation_number": "أدخل رقم التبرع الجديد",
+  "@enter_new_donation_number": {
+    "description": "حقل إدخال رقم التبرع الجديد"
+  },
+  "delete_campaign": "حذف الحملة",
+  "@delete_campaign": {
+    "description": "نص زر أو عنوان حذف الحملة"
+  },
+  "confirm_delete_campaign": "هل أنت متأكد أنك تريد حذف هذه الحملة؟",
+  "@confirm_delete_campaign": {
+    "description": "رسالة تأكيد قبل حذف الحملة"
+  },
+  "delete_campaigns": "حذف الحملات",
+  "@delete_campaigns": {
+    "description": "نص زر أو عنوان حذف الحملات"
+  },
+  "edit_campaign": "تعديل الحملة",
+  "@edit_campaign": {
+    "description": "نص زر أو عنوان تعديل الحملة"
+  },
+  "amount": "المبلغ",
+  "@amount": {
+    "description": "حقل المبلغ"
+  },
+  "click": "اضغط",
+  "@click": {
+    "description": "نص عام للضغط"
+  },
+  "card": "بطاقة",
+  "@card": {
+    "description": "نص خاص بنوع الدفع بطاقة"
+  },
+  "card_number": "رقم البطاقة",
+  "@card_number": {
+    "description": "حقل رقم البطاقة"
+  },
+  "enter_valid_amount": "أدخل مبلغ صحيح",
+  "@enter_valid_amount": {
+    "description": "رسالة تحقق للمبلغ غير الصحيح"
+  },
+  "donation_successful": "تم التبرع بنجاح",
+  "@donation_successful": {
+    "description": "رسالة نجاح التبرع"
+  },
+  "donate": "تبرع",
+  "@donate": {
+    "description": "زر التبرع"
+  },
+  "active": "نشط",
+  "@active": {
+    "description": "حالة نشطة"
+  },
+  "inactive": "غير نشط",
+  "@inactive": {
+    "description": "حالة غير نشطة"
+  },
+  "admin_dashboard": "لوحة تحكم المدير",
+  "@admin_dashboard": {
+    "description": "عنوان لوحة تحكم المدير"
+  },
+  "add_category": "إضافة فئة",
+  "@add_category": {
+    "description": "زر إضافة فئة جديدة"
+  },
+  "add_institution": "إضافة مؤسسة",
+  "@add_institution": {
+    "description": "زر إضافة مؤسسة جديدة"
+  },
+  "add_campaign": "إضافة حملة",
+  "@add_campaign": {
+    "description": "زر إضافة حملة جديدة"
+  },
+  "welcome_admin": "مرحباً بالمدير",
+  "@welcome_admin": {
+    "description": "رسالة ترحيب للمدير"
+  },
+  "manage_app_here": "يمكنك إدارة التطبيق من هنا",
+  "@manage_app_here": {
+    "description": "نص إرشادي في لوحة تحكم المدير"
+  },
+  "category_name": "اسم الفئة",
+  "@category_name": {
+    "description": "حقل اسم الفئة"
+  },
+  "image_url": "رابط الصورة",
+  "@image_url": {
+    "description": "حقل رابط صورة الفئة"
   }
 }

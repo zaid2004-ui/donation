@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:plasess/Riverpod/localizations.dart';
 import 'package:plasess/Riverpod/theme_provider.dart';
-import 'package:plasess/generalWidgetForME/general_widget.dart';
+import 'package:plasess/core/generalWidgetForME/general_widget.dart';
 import 'package:plasess/i18n/generated/app_localizations.dart';
-import 'package:plasess/router/app_route.dart';
-import 'package:plasess/router/route.dart';
-import 'package:plasess/theme/app_icons.dart';
+import 'package:plasess/core/router/app_route.dart';
+import 'package:plasess/core/router/route.dart';
+import 'package:plasess/core/theme/app_icons.dart';
 
 class AppDrawer extends ConsumerStatefulWidget {
   const AppDrawer({super.key});
@@ -83,7 +83,7 @@ class _AppDrawerState extends ConsumerState<AppDrawer> {
             ),
           ),
           //policies and controls
-          Generalwidget().getListTile(
+          GeneralWidget().getListTile(
             AppLocalizations.of(context)!.policiesControls,
             '',
             Icon(AppIcons.arrowForward),
@@ -92,7 +92,7 @@ class _AppDrawerState extends ConsumerState<AppDrawer> {
             () {},
           ),
           //frequently asked questions
-          Generalwidget().getListTile(
+          GeneralWidget().getListTile(
             AppLocalizations.of(context)!.faq,
             '',
             Icon(AppIcons.arrowForward),
@@ -100,6 +100,17 @@ class _AppDrawerState extends ConsumerState<AppDrawer> {
             context,
             () {
               AppRouter.pushNamed(Routes.faQuestions);
+            },
+          ),
+
+          GeneralWidget().getListTile(
+            AppLocalizations.of(context)!.admin_dashboard,
+            '',
+            Icon(AppIcons.arrowForward),
+            Theme.of(context).colorScheme.surface,
+            context,
+            () {
+              AppRouter.pushNamed(Routes.mainAdmin);
             },
           ),
         ],

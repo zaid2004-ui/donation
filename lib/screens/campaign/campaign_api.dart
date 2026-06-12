@@ -68,6 +68,12 @@ class CampaignApi {
       'End_Date': campaign.endDate,
       'Created_At': campaign.createdAt,
       'Is_Active': campaign.isActive,
+      'Collected_Amount': campaign.collectedAmount,
+      'donorCount': campaign.donorCount,
+      'titleAr': '',
+      'titleEn': '',
+      'descriptionAr': '',
+      'descriptionEn': '',
     });
   }
 
@@ -76,6 +82,7 @@ class CampaignApi {
     String newName,
     double numberNew,
     String descriptionNew,
+    bool isActive,
   ) async {
     await _firestore
         .collection('Core Collections')
@@ -86,6 +93,7 @@ class CampaignApi {
           'Title': newName,
           'Target_Amount': numberNew,
           'Description': descriptionNew,
+          'Is_Active': isActive,
         });
   }
 
@@ -96,5 +104,32 @@ class CampaignApi {
         .collection('Campaigns')
         .doc(id)
         .delete();
+  }
+
+  Future<void> donatedToCampaign(
+    String campaignId,
+    double donationAmount,
+  ) async {
+    /// 🔹 create doc with auto ID
+    final docRef = _firestore
+        .collection('Core Collections')
+        .doc('lWGLG8VymCuLNpfF3ovm')
+        .collection('Campaigns')
+        .doc(campaignId);
+
+    await _firestore.runTransaction((transaction) async {
+      final snapshot = await transaction.get(docRef);
+
+      double target = ((snapshot.data()?['Target_Amount'] ?? 0) as num)
+          .toDouble();
+      double colected = ((snapshot.data()?['Collected_Amount'] ?? 0) as num)
+          .toDouble();
+      double newCollected = colected + donationAmount;
+      bool isCompleted = newCollected >= target;
+      transaction.update(docRef, {
+        'Collected_Amount': newCollected,
+        'Is_Active': !isCompleted,
+      });
+    });
   }
 }

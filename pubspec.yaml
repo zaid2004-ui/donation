@@ -24,12 +24,21 @@ dependencies:
   cloud_firestore: ^6.2.0
   firebase_auth: ^6.3.0
   google_sign_in: ^6.1.5
+  flutter_launcher_icons: ^0.14.4
+  intl_phone_field: ^3.2.0
+
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
+
+
+# flutter_launcher_icons:
+#   android: true
+#   ios: true
+#   image_path: "assets/images/generalLogo.png"
 
 flutter:
   uses-material-design: true

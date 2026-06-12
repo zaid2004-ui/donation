@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:plasess/constants/app_colors.dart';
-import 'package:plasess/theme/app_typography.dart';
+import 'package:plasess/core/constants/app_colors.dart';
+import 'package:plasess/core/theme/app_typography.dart';
 
 class AppTheme {
   static final ThemeData lightTheme = ThemeData(

@@ -44,6 +44,10 @@ class InstitutionsApi {
       'Description': institution.description,
       'Category_ID': categoryRef,
       'institutionId': docRef.id,
+      'nameAr': institution.name,
+      'nameEn': institution.name,
+      'descriptionAr': institution.description,
+      'descriptionEn': institution.description,
     });
     return docRef.id;
   }

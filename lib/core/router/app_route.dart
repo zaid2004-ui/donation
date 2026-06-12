@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:plasess/firstpalge.dart';
-import 'package:plasess/router/route.dart';
+import 'package:plasess/core/router/route.dart';
 import 'package:plasess/screens/admin/Institution/add_Institution.dart';
 import 'package:plasess/screens/admin/campaign/add_campaign.dart';
 import 'package:plasess/screens/admin/category/add_category_ui.dart';
+import 'package:plasess/screens/admin/main_admin.dart';
 import 'package:plasess/screens/campaign/campain.dart';
 import 'package:plasess/screens/home/home.dart';
 import 'package:plasess/screens/institutions/institutions.dart';
@@ -28,8 +28,7 @@ class AppRouter {
     switch (settings.name) {
       case Routes.profile:
         return MaterialPageRoute(builder: (_) => const Profile());
-      case Routes.firstpalge:
-        return MaterialPageRoute(builder: (_) => const Firstpalge());
+
       case Routes.addCampaign:
         return MaterialPageRoute(builder: (_) => const AddCampaignPage());
       case Routes.welcome1:
@@ -57,12 +56,19 @@ class AppRouter {
             description: institution.description,
             donationNumber: institution.donationNumber,
             instatiosnId: institution.instituttionId,
+            imageUrl: institution.image,
+            descriptionAr: institution.descriptionAr,
+            descriptionEn: institution.descriptionEn,
+            nameAr: institution.nameAr,
+            nameEn: institution.nameEn,
           ),
         );
       case Routes.addCategoryPage:
         return MaterialPageRoute(builder: (_) => const AddCategoryPage());
       case Routes.addInstitution:
         return MaterialPageRoute(builder: (_) => const AddInstitution());
+      case Routes.mainAdmin:
+        return MaterialPageRoute(builder: (_) => const MainAdmin());
 
       default:
         return _errorRoute();

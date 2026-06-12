@@ -1,6 +1,5 @@
 class Routes {
   static const splashScreen = '/';
-  static const firstpalge = 'Firstpalge';
   static const welcome1 = 'Welcome1';
   static const sliderscreen = 'Sliderscreen';
   static const login = 'Login';
@@ -14,4 +13,5 @@ class Routes {
   static const addInstitution = 'AddInstitution';
   static const addCampaign = 'AddCampaignPage';
   static const profile = 'Profile';
+  static const mainAdmin = 'MainAdmin';
 }

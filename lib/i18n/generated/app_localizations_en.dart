@@ -122,4 +122,160 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get faq_a5 =>
       'Institutions are reviewed and approved by the admin before being published.';
+
+  @override
+  String get required_field => 'This field is required';
+
+  @override
+  String get invalid_email => 'Enter a valid email';
+
+  @override
+  String get password_length => 'Password must be between 8 and 12 characters';
+
+  @override
+  String get password_match => 'Password and confirm password must match';
+
+  @override
+  String get enter_email => 'Please enter your email';
+
+  @override
+  String get verify_email_before_login =>
+      'Please verify your email before logging in.';
+
+  @override
+  String get no_user_found_email => 'No user found for that email';
+
+  @override
+  String get wrong_password => 'Wrong password provided for that user';
+
+  @override
+  String get login_failed => 'Login failed';
+
+  @override
+  String get verification_email_sent =>
+      'Verification email sent. Please check your email and confirm your account.';
+
+  @override
+  String get weak_password => 'The password provided is too weak';
+
+  @override
+  String get email_already_exists =>
+      'The account already exists for that email';
+
+  @override
+  String get signed_in_successfully => 'Signed in successfully';
+
+  @override
+  String get phone => 'Phone';
+
+  @override
+  String get reset_password => 'Reset password';
+
+  @override
+  String get something_went_wrong => 'Something went wrong';
+
+  @override
+  String get password_reset_email_sent => 'Password reset email sent';
+
+  @override
+  String get delete_category => 'Delete Category';
+
+  @override
+  String get confirm_delete_category =>
+      'Are you sure you want to delete this category?';
+
+  @override
+  String get edit_category => 'Edit Category';
+
+  @override
+  String get save => 'Save';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get institutions => 'Institutions';
+
+  @override
+  String get update_institution => 'Update Institution';
+
+  @override
+  String get confirm_delete_institution =>
+      'Are you sure you want to delete this institution?';
+
+  @override
+  String get delete_institution => 'Delete Institution';
+
+  @override
+  String get enter_new_name => 'Enter new name';
+
+  @override
+  String get enter_new_description => 'Enter new description';
+
+  @override
+  String get enter_new_donation_number => 'Enter new donation number';
+
+  @override
+  String get delete_campaign => 'Delete Campaign';
+
+  @override
+  String get confirm_delete_campaign =>
+      'Are you sure you want to delete this campaign?';
+
+  @override
+  String get delete_campaigns => 'Delete Campaign';
+
+  @override
+  String get edit_campaign => 'Edit Campaign';
+
+  @override
+  String get amount => 'Amount';
+
+  @override
+  String get click => 'Click';
+
+  @override
+  String get card => 'Card';
+
+  @override
+  String get card_number => 'Card Number';
+
+  @override
+  String get enter_valid_amount => 'Enter valid amount';
+
+  @override
+  String get donation_successful => 'Donation Successful';
+
+  @override
+  String get donate => 'Donate';
+
+  @override
+  String get active => 'Active';
+
+  @override
+  String get inactive => 'Inactive';
+
+  @override
+  String get admin_dashboard => 'Admin Dashboard';
+
+  @override
+  String get add_category => 'Add Category';
+
+  @override
+  String get add_institution => 'Add Institution';
+
+  @override
+  String get add_campaign => 'Add Campaign';
+
+  @override
+  String get welcome_admin => 'Welcome Admin';
+
+  @override
+  String get manage_app_here => 'Manage the application from here';
+
+  @override
+  String get category_name => 'Category Name';
+
+  @override
+  String get image_url => 'Image URL';
 }

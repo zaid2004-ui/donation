@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:plasess/generalWidgetForME/general_widget.dart';
-import 'package:plasess/theme/app_icons.dart';
+import 'package:plasess/core/generalWidgetForME/general_widget.dart';
+import 'package:plasess/core/theme/app_icons.dart';
 
 class PasswordField extends StatefulWidget {
   const PasswordField({
@@ -24,7 +24,7 @@ class _PasswordFieldState extends State<PasswordField> {
       controller: widget.controller,
       obscureText: obscureText,
 
-      decoration: Generalwidget()
+      decoration: GeneralWidget()
           .getInputDecoration(context, widget.label)
           .copyWith(
             suffixIcon: IconButton(

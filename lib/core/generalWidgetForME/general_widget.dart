@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:plasess/i18n/generated/app_localizations.dart';
 import 'package:wave_widget/wave_widget.dart';
 
-class Generalwidget {
+class GeneralWidget {
   //ExpansionTile
   ExpansionTile getExpnsionTile(
     BuildContext context,
@@ -10,7 +11,9 @@ class Generalwidget {
   ) {
     return ExpansionTile(
       backgroundColor: Theme.of(context).colorScheme.surface,
-      collapsedBackgroundColor: Theme.of(context).colorScheme.onPrimary,
+      collapsedBackgroundColor: Theme.of(
+        context,
+      ).colorScheme.surface.withValues(alpha: 0.2),
 
       tilePadding: EdgeInsets.all(10),
       title: Text(
@@ -34,7 +37,7 @@ class Generalwidget {
   }
 
   //CONTATER AND LISTTILE
-  getListTile(
+  Widget getListTile(
     String title,
     String subtitle,
     Icon icon,
@@ -74,7 +77,7 @@ class Generalwidget {
         WaveLayer.solid(
           duration: 10000,
           heightFactor: 0.8,
-          color: Theme.of(context).colorScheme.surface,
+          color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.3),
         ),
       ],
     );
@@ -92,17 +95,17 @@ class Generalwidget {
 
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'This field is required';
+          return AppLocalizations.of(context)!.required_field;
         }
         if (!RegExp(r'^.+@.+\..+$').hasMatch(value)) {
-          return "Enter a valid email";
+          return AppLocalizations.of(context)!.invalid_email;
         }
         return null;
       },
     );
   }
 
-  //text field witout hiden
+  //text field password witout hiden
   TextFormField getTextFormFieldpassword(
     BuildContext context,
     String label, {
@@ -114,10 +117,10 @@ class Generalwidget {
 
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'This field is required';
+          return AppLocalizations.of(context)!.required_field;
         }
         if (value.length < 8 || value.length > 12) {
-          return 'password must be between 8 and 12 characters';
+          return AppLocalizations.of(context)!.password_length;
         }
         return null;
       },
@@ -137,10 +140,10 @@ class Generalwidget {
 
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'This field is required';
+          return AppLocalizations.of(context)!.required_field;
         }
-        if (value != passwordController!.text) {
-          return 'password and confirm password must be the same';
+        if (passwordController == null || value != passwordController.text) {
+          return AppLocalizations.of(context)!.password_match;
         }
 
         return null;
@@ -160,7 +163,7 @@ class Generalwidget {
 
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'This field is required';
+          return AppLocalizations.of(context)!.required_field;
         }
 
         return null;
@@ -171,14 +174,17 @@ class Generalwidget {
   //decoratoin text filed to inherate hiden filed
   InputDecoration getInputDecoration(BuildContext context, String label) {
     return InputDecoration(
-      contentPadding: EdgeInsets.all(5),
+      contentPadding: EdgeInsets.all(10),
+      border: OutlineInputBorder(),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Theme.of(context).colorScheme.primary),
+      ),
       labelText: label,
-      labelStyle: Theme.of(context).textTheme.bodyLarge,
     );
   }
 
   // elvated button general
-  ElevatedButton getElevatedButton(
+  Widget getElevatedButton(
     BuildContext context,
     String text,
     Function onPressed,
@@ -189,7 +195,32 @@ class Generalwidget {
       },
 
       style: ElevatedButton.styleFrom(
-        backgroundColor: Theme.of(context).colorScheme.onPrimary,
+        backgroundColor: Theme.of(
+          context,
+        ).colorScheme.primary.withValues(alpha: 0.8),
+      ),
+      child: Text(
+        text,
+        style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+      ),
+    );
+  }
+
+  // elvated button general
+  Widget getElevatedButtonOnbording(
+    BuildContext context,
+    String text,
+    Function onPressed,
+  ) {
+    return ElevatedButton(
+      onPressed: () {
+        onPressed();
+      },
+
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Theme.of(
+          context,
+        ).colorScheme.onPrimary.withValues(alpha: 0.8),
       ),
       child: Text(
         text,
@@ -198,7 +229,7 @@ class Generalwidget {
     );
   }
 
-  Container getIconButton(BuildContext context, Icon icon, Function onPressed) {
+  Widget getIconButton(BuildContext context, Icon icon, Function onPressed) {
     return Container(
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.onPrimary,

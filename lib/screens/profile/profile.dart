@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:plasess/router/app_route.dart';
-import 'package:plasess/router/route.dart';
+import 'package:plasess/core/router/app_route.dart';
+import 'package:plasess/core/router/route.dart';
 import 'package:plasess/screens/profile/profil_api.dart';
 import 'package:plasess/screens/profile/profile_model.dart';
 

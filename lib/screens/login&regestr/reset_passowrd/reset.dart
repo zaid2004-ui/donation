@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:plasess/generalWidgetForME/general_widget.dart';
+import 'package:plasess/core/generalWidgetForME/general_widget.dart';
 import 'package:plasess/i18n/generated/app_localizations.dart';
-import 'package:plasess/router/app_route.dart';
-import 'package:plasess/router/route.dart';
+import 'package:plasess/core/router/app_route.dart';
+import 'package:plasess/core/router/route.dart';
 import 'package:plasess/screens/login&regestr/reset_passowrd/provider.dart';
 
 class Reset extends ConsumerWidget {
@@ -16,8 +16,22 @@ class Reset extends ConsumerWidget {
     final TextEditingController emailControler = TextEditingController(
       text: emailFromPrivider,
     );
+    // function to reset password
+    Future<void> resetPassword() async {
+      await FirebaseAuth.instance.sendPasswordResetEmail(
+        email: emailControler.text.trim(),
+      );
+
+      if (!context.mounted) return;
+
+      GeneralWidget().showSucessMessage(
+        context,
+        AppLocalizations.of(context)!.password_reset_email_sent,
+      );
+    }
+
     return Scaffold(
-      appBar: AppBar(title: Text('reset password')),
+      appBar: AppBar(title: Text(AppLocalizations.of(context)!.reset_password)),
       body: ListView(
         children: [
           //image
@@ -33,7 +47,7 @@ class Reset extends ConsumerWidget {
           //text filed
           Padding(
             padding: const EdgeInsets.all(20.0),
-            child: Generalwidget().getTextFormField(
+            child: GeneralWidget().getTextFormField(
               context,
               AppLocalizations.of(context)!.email,
               controller: emailControler,
@@ -42,27 +56,19 @@ class Reset extends ConsumerWidget {
           //button reset
           Padding(
             padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-            child: Generalwidget().getElevatedButton(
+            child: GeneralWidget().getElevatedButton(
               context,
               AppLocalizations.of(context)!.reset,
               () async {
                 try {
-                  await FirebaseAuth.instance.sendPasswordResetEmail(
-                    email: emailControler.text.trim(),
-                  );
-
-                  if (!context.mounted) return;
-
-                  Generalwidget().showSucessMessage(
-                    context,
-                    'Check your email to reset your password',
-                  );
+                  await resetPassword();
                 } on FirebaseAuthException catch (e) {
                   if (!context.mounted) return;
 
-                  Generalwidget().showErrorMessage(
+                  GeneralWidget().showErrorMessage(
                     context,
-                    e.message ?? 'Something went wrong',
+                    e.message ??
+                        AppLocalizations.of(context)!.something_went_wrong,
                   );
                 }
               },

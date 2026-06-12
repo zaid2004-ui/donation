@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:plasess/Riverpod/localizations.dart';
 import 'package:plasess/Riverpod/theme_provider.dart';
 import 'package:plasess/firebase_options.dart';
-import 'package:plasess/router/app_route.dart';
+import 'package:plasess/core/router/app_route.dart';
 import 'package:plasess/screens/onboarding/splash_screen.dart';
-import 'package:plasess/theme/app_theme.dart';
+import 'package:plasess/core/theme/app_theme.dart';
 import 'i18n/generated/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

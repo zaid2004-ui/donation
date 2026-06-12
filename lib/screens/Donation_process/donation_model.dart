@@ -2,39 +2,66 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DonationModel {
   final double amount;
-  final String compaignId;
-  final DateTime createdAT;
-  final String institutionId;
+
+  /// References
+  final DocumentReference campaignRef;
+  final DocumentReference userRef;
+  final DocumentReference institutionRef;
+
+  final DateTime createdAt;
+
   final String paymentMethod;
-  final String userId;
   final Map<String, dynamic> paymentDetails;
+
+  //denormalized for UI performance
+  final String donorName;
+  final String campaignTitle;
+  final String message;
 
   DonationModel({
     required this.amount,
-    required this.compaignId,
-    required this.createdAT,
-    required this.institutionId,
+    required this.campaignRef,
+    required this.userRef,
+    required this.institutionRef,
+    required this.createdAt,
     required this.paymentMethod,
-    required this.userId,
     required this.paymentDetails,
+    this.donorName = '',
+    this.campaignTitle = '',
+    this.message = '',
   });
 
-  factory DonationModel.fromJson(Map<String, dynamic> json, String docId) {
+  factory DonationModel.fromJson(Map<String, dynamic> json) {
     return DonationModel(
-      // donationId: docId, // Uncomment if you have a donationId field
       amount: (json['Amount'] ?? 0).toDouble(),
 
-      compaignId: json['Campaign_ID'] as String,
+      campaignRef: json['Campaign_ID'] as DocumentReference,
+      userRef: json['User_ID'] as DocumentReference,
+      institutionRef: json['Institution_ID'] as DocumentReference,
 
-      createdAT: (json['Created_At'] as Timestamp).toDate(),
-
-      institutionId: json['Institution_ID'] as String,
-
+      createdAt: (json['Created_At'] as Timestamp).toDate(),
       paymentMethod: json['Payment_Method'] ?? '',
-
-      userId: json['User_ID'] as String,
-
       paymentDetails: Map<String, dynamic>.from(json['Payment_Details'] ?? {}),
+
+      donorName: json['donorName'] ?? '',
+      campaignTitle: json['campaignTitle'] ?? '',
+      message: json['message'] ?? '',
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'Amount': amount,
+      'Campaign_ID': campaignRef,
+      'User_ID': userRef,
+      'Institution_ID': institutionRef,
+      'Date': Timestamp.fromDate(createdAt),
+      'Payment_Method': paymentMethod,
+      'Payment_Details': paymentDetails,
+
+      'donorName': donorName,
+      'campaignTitle': campaignTitle,
+      'message': message,
+    };
   }
 }

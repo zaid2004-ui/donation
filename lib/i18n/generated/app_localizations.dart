@@ -319,6 +319,306 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Institutions are reviewed and approved by the admin before being published.'**
   String get faq_a5;
+
+  /// Validation message when the field is empty
+  ///
+  /// In en, this message translates to:
+  /// **'This field is required'**
+  String get required_field;
+
+  /// Validation message for invalid email format
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid email'**
+  String get invalid_email;
+
+  /// Validation message for password length requirement
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be between 8 and 12 characters'**
+  String get password_length;
+
+  /// Validation message when password and confirm password do not match
+  ///
+  /// In en, this message translates to:
+  /// **'Password and confirm password must match'**
+  String get password_match;
+
+  /// Message asking the user to enter their email
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your email'**
+  String get enter_email;
+
+  /// Message asking the user to verify their email before logging in
+  ///
+  /// In en, this message translates to:
+  /// **'Please verify your email before logging in.'**
+  String get verify_email_before_login;
+
+  /// Message shown when no user is found for the entered email
+  ///
+  /// In en, this message translates to:
+  /// **'No user found for that email'**
+  String get no_user_found_email;
+
+  /// Message shown when an incorrect password is entered for the user
+  ///
+  /// In en, this message translates to:
+  /// **'Wrong password provided for that user'**
+  String get wrong_password;
+
+  /// General message when login attempt fails
+  ///
+  /// In en, this message translates to:
+  /// **'Login failed'**
+  String get login_failed;
+
+  /// Message shown after sending the verification email to the user
+  ///
+  /// In en, this message translates to:
+  /// **'Verification email sent. Please check your email and confirm your account.'**
+  String get verification_email_sent;
+
+  /// Message shown when the provided password is too weak
+  ///
+  /// In en, this message translates to:
+  /// **'The password provided is too weak'**
+  String get weak_password;
+
+  /// Message shown when an account already exists for the entered email
+  ///
+  /// In en, this message translates to:
+  /// **'The account already exists for that email'**
+  String get email_already_exists;
+
+  /// Message shown when the user signs in successfully
+  ///
+  /// In en, this message translates to:
+  /// **'Signed in successfully'**
+  String get signed_in_successfully;
+
+  /// Phone number field label
+  ///
+  /// In en, this message translates to:
+  /// **'Phone'**
+  String get phone;
+
+  /// Reset password button or screen title
+  ///
+  /// In en, this message translates to:
+  /// **'Reset password'**
+  String get reset_password;
+
+  /// Generic error message when an unexpected error occurs
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong'**
+  String get something_went_wrong;
+
+  /// Message shown when the password reset email is successfully sent
+  ///
+  /// In en, this message translates to:
+  /// **'Password reset email sent'**
+  String get password_reset_email_sent;
+
+  /// Button or action label for deleting a category
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Category'**
+  String get delete_category;
+
+  /// Confirmation message before deleting a category
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this category?'**
+  String get confirm_delete_category;
+
+  /// Button or title label for editing a category
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Category'**
+  String get edit_category;
+
+  /// Save button label
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
+  /// Cancel button label
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// Institutions label or title
+  ///
+  /// In en, this message translates to:
+  /// **'Institutions'**
+  String get institutions;
+
+  /// Button or title label for updating an institution
+  ///
+  /// In en, this message translates to:
+  /// **'Update Institution'**
+  String get update_institution;
+
+  /// Confirmation message before deleting an institution
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this institution?'**
+  String get confirm_delete_institution;
+
+  /// Button or title label for deleting an institution
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Institution'**
+  String get delete_institution;
+
+  /// Input field for new name
+  ///
+  /// In en, this message translates to:
+  /// **'Enter new name'**
+  String get enter_new_name;
+
+  /// Input field for new description
+  ///
+  /// In en, this message translates to:
+  /// **'Enter new description'**
+  String get enter_new_description;
+
+  /// Input field for new donation number
+  ///
+  /// In en, this message translates to:
+  /// **'Enter new donation number'**
+  String get enter_new_donation_number;
+
+  /// Button or title label for deleting a campaign
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Campaign'**
+  String get delete_campaign;
+
+  /// Confirmation message before deleting a campaign
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this campaign?'**
+  String get confirm_delete_campaign;
+
+  /// Button or title label for deleting a campaign
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Campaign'**
+  String get delete_campaigns;
+
+  /// Button or title label for editing a campaign
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Campaign'**
+  String get edit_campaign;
+
+  /// Amount input field
+  ///
+  /// In en, this message translates to:
+  /// **'Amount'**
+  String get amount;
+
+  /// Generic click text
+  ///
+  /// In en, this message translates to:
+  /// **'Click'**
+  String get click;
+
+  /// Payment method card label
+  ///
+  /// In en, this message translates to:
+  /// **'Card'**
+  String get card;
+
+  /// Input field for card number
+  ///
+  /// In en, this message translates to:
+  /// **'Card Number'**
+  String get card_number;
+
+  /// Validation message for invalid amount
+  ///
+  /// In en, this message translates to:
+  /// **'Enter valid amount'**
+  String get enter_valid_amount;
+
+  /// Success message after donation
+  ///
+  /// In en, this message translates to:
+  /// **'Donation Successful'**
+  String get donation_successful;
+
+  /// Donate button label
+  ///
+  /// In en, this message translates to:
+  /// **'Donate'**
+  String get donate;
+
+  /// Active status
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get active;
+
+  /// Inactive status
+  ///
+  /// In en, this message translates to:
+  /// **'Inactive'**
+  String get inactive;
+
+  /// Admin dashboard title
+  ///
+  /// In en, this message translates to:
+  /// **'Admin Dashboard'**
+  String get admin_dashboard;
+
+  /// Button to add a new category
+  ///
+  /// In en, this message translates to:
+  /// **'Add Category'**
+  String get add_category;
+
+  /// Button to add a new institution
+  ///
+  /// In en, this message translates to:
+  /// **'Add Institution'**
+  String get add_institution;
+
+  /// Button to add a new campaign
+  ///
+  /// In en, this message translates to:
+  /// **'Add Campaign'**
+  String get add_campaign;
+
+  /// Welcome message for admin user
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome Admin'**
+  String get welcome_admin;
+
+  /// Instruction text in admin dashboard
+  ///
+  /// In en, this message translates to:
+  /// **'Manage the application from here'**
+  String get manage_app_here;
+
+  /// Category name field
+  ///
+  /// In en, this message translates to:
+  /// **'Category Name'**
+  String get category_name;
+
+  /// Image URL field
+  ///
+  /// In en, this message translates to:
+  /// **'Image URL'**
+  String get image_url;
 }
 
 class _AppLocalizationsDelegate

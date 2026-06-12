@@ -2,32 +2,32 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   // -------------------------------
-  //  Olive Green Theme (Light)
+  //  Teal Dark Theme (Light)
   // -------------------------------
-  static const Color primary10 = Color(0xFFF1F5EC);
-  static const Color primary20 = Color(0xFFDCE6CF);
-  static const Color primary30 = Color(0xFFC6D7B2);
-  static const Color primary40 = Color(0xFFB0C995);
-  static const Color primary50 = Color(0xFF9ABA78);
-  static const Color primary60 = Color(0xFF84AC5B);
-  static const Color primary70 = Color(0xFF6E9D3E);
-  static const Color primary80 = Color(0xFF5A872F);
-  static const Color primary90 = Color(0xFF4B7326);
-  static const Color primary100 = Color(0xFF39581C);
+  static const Color primary10 = Color(0xFFEAF5F4);
+  static const Color primary20 = Color(0xFFB8E0DC);
+  static const Color primary30 = Color(0xFF8CCAC4);
+  static const Color primary40 = Color(0xFF6BBDB6);
+  static const Color primary50 = Color(0xFF4AADA6);
+  static const Color primary60 = Color(0xFF2A8C84);
+  static const Color primary70 = Color(0xFF1F6E67);
+  static const Color primary80 = Color(0xFF155249);
+  static const Color primary90 = Color(0xFF0E3C39);
+  static const Color primary100 = Color(0xFF07201E);
 
   // -------------------------------
-  //  Olive Dark Theme
+  //  Teal Dark Theme (Dark)
   // -------------------------------
-  static const Color darkPrimary10 = Color(0xFF0F140C);
-  static const Color darkPrimary20 = Color(0xFF141B10);
-  static const Color darkPrimary30 = Color(0xFF1A2214);
-  static const Color darkPrimary40 = Color(0xFF1F2A18);
-  static const Color darkPrimary50 = Color(0xFF25311C);
-  static const Color darkPrimary60 = Color(0xFF2B3921);
-  static const Color darkPrimary70 = Color(0xFF314125);
-  static const Color darkPrimary80 = Color(0xFF384A2B);
-  static const Color darkPrimary90 = Color(0xFF405332);
-  static const Color darkPrimary100 = Color(0xFF4B623A);
+  static const Color darkPrimary10 = Color(0xFF040E0D);
+  static const Color darkPrimary20 = Color(0xFF071412);
+  static const Color darkPrimary30 = Color(0xFF0A1B1A);
+  static const Color darkPrimary40 = Color(0xFF0D2422);
+  static const Color darkPrimary50 = Color(0xFF112E2B);
+  static const Color darkPrimary60 = Color(0xFF153835);
+  static const Color darkPrimary70 = Color(0xFF1A433F);
+  static const Color darkPrimary80 = Color(0xFF1F504C);
+  static const Color darkPrimary90 = Color(0xFF255E59);
+  static const Color darkPrimary100 = Color(0xFF2A8C84);
 
   // -------------------------------
   //  Neutral Colors (كما هي)
