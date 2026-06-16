@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:plasess/core/router/route.dart';
+import 'package:plasess/screens/Donation_process/all_donation.dart';
 import 'package:plasess/screens/admin/Institution/add_Institution.dart';
 import 'package:plasess/screens/admin/campaign/add_campaign.dart';
 import 'package:plasess/screens/admin/category/add_category_ui.dart';
 import 'package:plasess/screens/admin/main_admin.dart';
+import 'package:plasess/screens/campaign/campaign_reels.dart';
 import 'package:plasess/screens/campaign/campain.dart';
 import 'package:plasess/screens/home/home.dart';
 import 'package:plasess/screens/institutions/institutions.dart';
@@ -69,6 +71,10 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const AddInstitution());
       case Routes.mainAdmin:
         return MaterialPageRoute(builder: (_) => const MainAdmin());
+      case Routes.campaignReels:
+        return MaterialPageRoute(builder: (_) => const CampaignReelsPage());
+      case Routes.allDonations:
+        return MaterialPageRoute(builder: (_) => const AllDonations());
 
       default:
         return _errorRoute();

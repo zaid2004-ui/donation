@@ -242,21 +242,21 @@ class _LoginState extends ConsumerState<Login> {
                             ],
                           ),
 
-                          //login without passowrd
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(AppLocalizations.of(context)!.daccount),
-                              TextButton(
-                                onPressed: () {
-                                  AppRouter.pushNamed(Routes.addCategoryPage);
-                                },
-                                child: Text(
-                                  AppLocalizations.of(context)!.registration,
-                                ),
-                              ),
-                            ],
-                          ),
+                          // //login without passowrd
+                          // Row(
+                          //   mainAxisAlignment: MainAxisAlignment.center,
+                          //   children: [
+                          //     Text(AppLocalizations.of(context)!.daccount),
+                          //     TextButton(
+                          //       onPressed: () {
+                          //         AppRouter.pushNamed(Routes.addCategoryPage);
+                          //       },
+                          //       child: Text(
+                          //         AppLocalizations.of(context)!.registration,
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),
                         ],
                       ),
                     ),

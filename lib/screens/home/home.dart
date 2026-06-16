@@ -10,6 +10,7 @@ import 'package:plasess/core/router/app_route.dart';
 import 'package:plasess/core/router/route.dart';
 import 'package:plasess/i18n/generated/app_localizations.dart';
 import 'package:plasess/screens/Donation_process/my_donation.dart';
+import 'package:plasess/screens/campaign/campaign_reels.dart';
 import 'package:plasess/screens/home/api_category/category_api.dart';
 import 'package:plasess/screens/home/api_category/category_model.dart';
 import 'package:plasess/screens/home/drawer.dart';
@@ -189,10 +190,12 @@ class _HomeState extends ConsumerState<Home>
         builder: (context, ref, child) {
           final index = ref.watch(navbarPorvider);
           switch (index) {
-            case 1:
-              return MyDonations();
+            case 3:
+              return CampaignReelsPage();
             case 2:
               return Profile();
+            case 1:
+              return MyDonations();
             case 0:
               return ListView(
                 children: [
@@ -368,7 +371,7 @@ class _HomeState extends ConsumerState<Home>
                 ],
               );
             default:
-              return Home();
+              return const SizedBox();
           }
         },
       ),
@@ -390,6 +393,10 @@ class _HomeState extends ConsumerState<Home>
               ),
               Icon(
                 AppIcons.profile,
+                color: Theme.of(context).colorScheme.onSurface,
+              ),
+              Icon(
+                AppIcons.reels,
                 color: Theme.of(context).colorScheme.onSurface,
               ),
             ],

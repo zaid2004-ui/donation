@@ -1,48 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:plasess/screens/Donation_process/donation_api.dart';
 import 'package:plasess/screens/Donation_process/donation_model.dart';
 
-class MyDonations extends StatefulWidget {
-  const MyDonations({super.key});
+class AllDonations extends StatefulWidget {
+  const AllDonations({super.key});
 
   @override
-  State<MyDonations> createState() => _MyDonationsState();
+  State<AllDonations> createState() => _AllDonationsState();
 }
 
-class _MyDonationsState extends State<MyDonations> {
+class _AllDonationsState extends State<AllDonations> {
   final DonationApi donationApi = DonationApi();
-
-  late Future<List<DonationModel>> myDonationsFuture;
+  late Future<List<DonationModel>> donationsFuture;
 
   @override
   void initState() {
     super.initState();
-    final userId = FirebaseAuth.instance.currentUser!.uid;
-    myDonationsFuture = donationApi.getUserDonations(userId);
+    donationsFuture = donationApi.getAllDonations();
   }
 
   Future<void> refresh() async {
-    final userId = FirebaseAuth.instance.currentUser!.uid;
     setState(() {
-      myDonationsFuture = donationApi.getUserDonations(userId);
+      donationsFuture = donationApi.getAllDonations();
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: const Text("كل التبرعات")),
       body: FutureBuilder<List<DonationModel>>(
-        future: myDonationsFuture,
+        future: donationsFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           }
 
+          if (snapshot.hasError) {
+            return Center(child: Text("خطأ: ${snapshot.error}"));
+          }
+
           if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return const Center(
-              child: Text("لا يوجد تبرعات", style: TextStyle(fontSize: 16)),
-            );
+            return const Center(child: Text("لا يوجد تبرعات حالياً"));
           }
 
           final donations = snapshot.data!;
@@ -82,7 +81,6 @@ class _MyDonationsState extends State<MyDonations> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-
                       const SizedBox(height: 10),
 
                       // Amount + Method
@@ -97,7 +95,6 @@ class _MyDonationsState extends State<MyDonations> {
                               color: Colors.green,
                             ),
                           ),
-
                           Container(
                             padding: const EdgeInsets.symmetric(
                               horizontal: 10,
@@ -121,7 +118,6 @@ class _MyDonationsState extends State<MyDonations> {
                           ),
                         ],
                       ),
-
                       const SizedBox(height: 10),
 
                       // Donor name
@@ -129,7 +125,6 @@ class _MyDonationsState extends State<MyDonations> {
                         "👤 ${d.donorName}",
                         style: TextStyle(color: Colors.grey.shade700),
                       ),
-
                       const SizedBox(height: 5),
 
                       // Date

@@ -5,12 +5,25 @@ import 'package:plasess/screens/campaign/campaign_model.dart';
 
 class CampaignApi {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  Future<List<CampaaignModel>> getAllCampaigns() async {
+    final response = await _firestore
+        .collection('Core Collections')
+        .doc('lWGLG8VymCuLNpfF3ovm')
+        .collection('Campaigns')
+        .get();
+
+    return response.docs.map((doc) {
+      return CampaaignModel.fromJson(doc.data(), doc.id);
+    }).toList();
+  }
+
   Future<List<CampaaignModel>> getCampaigns(String institutionId) async {
     //  final categoryRef = _firestore
     //     .collection('Core Collections')
     //     .doc('lWGLG8VymCuLNpfF3ovm')
     //     .collection('Categories')
     //     .doc(institutionId);
+
     final institutionRef = _firestore
         .collection('Core Collections')
         .doc('lWGLG8VymCuLNpfF3ovm')
@@ -49,7 +62,7 @@ class CampaignApi {
           .doc(id);
     }).toList();
 
-    /// 🔹 create doc with auto ID
+    ///  create doc with auto ID
     final docRef = firestore
         .collection('Core Collections')
         .doc('lWGLG8VymCuLNpfF3ovm')

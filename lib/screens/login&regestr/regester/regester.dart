@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:plasess/core/generalWidgetForME/general_widget.dart';
 import 'package:plasess/i18n/generated/app_localizations.dart';
 import 'package:plasess/core/router/app_route.dart';
@@ -194,13 +195,20 @@ class _RegesterState extends State<Regester> {
                         //phone number
                         Padding(
                           padding: const EdgeInsets.fromLTRB(20, 5, 20, 10),
-                          child: GeneralWidget().getTextFormFieldUserNmae(
-                            context,
-                            AppLocalizations.of(context)!.phone,
+                          child: IntlPhoneField(
                             controller: phoneController,
+                            decoration: InputDecoration(
+                              labelText: AppLocalizations.of(context)!.phone,
+                              border: OutlineInputBorder(),
+                            ),
+                            initialCountryCode: 'JO',
+                            onChanged: (phone) {
+                              log(phone.completeNumber);
+                            },
                           ),
                         ),
-                        const SizedBox(height: 12),
+
+                        const SizedBox(height: 10),
 
                         //email
                         Padding(

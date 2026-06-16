@@ -50,4 +50,5 @@ class AppIcons {
   static const IconData visibilityOff = Icons.visibility_off;
   static const IconData profile = Icons.person;
   static const IconData volunteer = Icons.volunteer_activism;
+  static const IconData reels = Icons.video_library;
 }

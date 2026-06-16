@@ -14,4 +14,7 @@ class Routes {
   static const addCampaign = 'AddCampaignPage';
   static const profile = 'Profile';
   static const mainAdmin = 'MainAdmin';
+  static const campaignReels = 'CampaignReelsPage';
+
+  static const allDonations = 'AllDonations';
 }

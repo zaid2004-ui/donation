@@ -1,3 +1,7 @@
+import 'dart:developer';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:plasess/Riverpod/localizations.dart';
@@ -17,6 +21,27 @@ class AppDrawer extends ConsumerStatefulWidget {
 
 class _AppDrawerState extends ConsumerState<AppDrawer> {
   bool isSwitched = false;
+  String role = "User";
+  // Get user role from Firestore
+  Future<void> getRole() async {
+    final user = FirebaseAuth.instance.currentUser!;
+    final doc = await FirebaseFirestore.instance
+        .collection('Core Collections')
+        .doc('lWGLG8VymCuLNpfF3ovm')
+        .collection('User')
+        .doc(user.uid)
+        .get();
+    setState(() {
+      role = doc.data()!['Role'];
+    });
+    log("User Role: $role");
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getRole();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -102,17 +127,18 @@ class _AppDrawerState extends ConsumerState<AppDrawer> {
               AppRouter.pushNamed(Routes.faQuestions);
             },
           ),
-
-          GeneralWidget().getListTile(
-            AppLocalizations.of(context)!.admin_dashboard,
-            '',
-            Icon(AppIcons.arrowForward),
-            Theme.of(context).colorScheme.surface,
-            context,
-            () {
-              AppRouter.pushNamed(Routes.mainAdmin);
-            },
-          ),
+          if (role == "Admin")
+            //admin dashboard
+            GeneralWidget().getListTile(
+              AppLocalizations.of(context)!.admin_dashboard,
+              '',
+              Icon(AppIcons.arrowForward),
+              Theme.of(context).colorScheme.surface,
+              context,
+              () {
+                AppRouter.pushNamed(Routes.mainAdmin);
+              },
+            ),
         ],
       ),
     );

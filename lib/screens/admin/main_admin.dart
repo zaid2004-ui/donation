@@ -70,6 +70,12 @@ class MainAdmin extends StatelessWidget {
                     Navigator.of(context).pushNamed(Routes.addCampaign);
                   },
                 ),
+
+                const SizedBox(height: 15),
+
+                GeneralWidget().getElevatedButton(context, "All Donations", () {
+                  Navigator.of(context).pushNamed(Routes.allDonations);
+                }),
               ],
             ),
           ),
