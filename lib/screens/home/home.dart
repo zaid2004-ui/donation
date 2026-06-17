@@ -205,62 +205,89 @@ class _HomeState extends ConsumerState<Home>
                     width: double.infinity,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Theme.of(context).colorScheme.surface,
-                          blurRadius: 10,
-                          spreadRadius: 0.5,
-                        ),
-                      ],
-                      color: Theme.of(context).colorScheme.surface,
+
+                      // color: Theme.of(context).colorScheme.surface,
                     ),
                     child: Column(
                       children: [
-                        //slider
-                        CarouselSlider(
-                          carouselController: sliderController,
+                        Container(
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            // color: Theme.of(context).colorScheme.surface,
+                          ),
+                          child: Column(
+                            children: [
+                              CarouselSlider(
+                                carouselController: sliderController,
+                                items: [
+                                  Image.asset(
+                                    'assets/images/1.jpeg',
+                                    fit: BoxFit.cover,
+                                    width: double.infinity,
+                                  ),
+                                  Image.asset(
+                                    'assets/images/imgae4.png',
+                                    fit: BoxFit.cover,
+                                    width: double.infinity,
+                                  ),
+                                  Image.asset(
+                                    'assets/images/image3.png',
+                                    fit: BoxFit.cover,
+                                    width: double.infinity,
+                                  ),
 
-                          items: [
-                            Image.asset('assets/images/welcom1.png'),
-                            Image.asset('assets/images/logo.png'),
-                            Image.asset('assets/images/welcom2.png'),
-                          ],
-                          options: CarouselOptions(
-                            onPageChanged: (index, reason) {
-                              setState(() {
-                                controller = index;
-                              });
-                            },
-                            autoPlay: true,
-                            autoPlayAnimationDuration: Duration(seconds: 1),
-                            enlargeCenterPage: true,
+                                  Image.asset(
+                                    'assets/images/imgae6.png',
+                                    fit: BoxFit.cover,
+                                    width: double.infinity,
+                                  ),
+                                ],
+                                options: CarouselOptions(
+                                  height: 200,
+                                  viewportFraction: 1.0,
+                                  autoPlay: true,
+                                  enlargeCenterPage: false,
+                                  autoPlayAnimationDuration: const Duration(
+                                    seconds: 1,
+                                  ),
+                                  onPageChanged: (index, reason) {
+                                    setState(() {
+                                      controller = index;
+                                    });
+                                  },
+                                ),
+                              ),
+
+                              const SizedBox(height: 10),
+
+                              AnimatedSmoothIndicator(
+                                count: 4,
+                                axisDirection: Axis.horizontal,
+                                effect: SlideEffect(
+                                  spacing: 8.0,
+                                  radius: 50.0,
+                                  dotWidth: 10.0,
+                                  dotHeight: 10.0,
+                                  paintStyle: PaintingStyle.stroke,
+                                  strokeWidth: 1.5,
+                                  dotColor: Theme.of(
+                                    context,
+                                  ).colorScheme.primary,
+                                  activeDotColor: Theme.of(
+                                    context,
+                                  ).colorScheme.onPrimary,
+                                ),
+                                activeIndex: controller,
+                              ),
+
+                              const SizedBox(height: 10),
+                            ],
                           ),
                         ),
-
-                        //anmatedSommthIndecator
-                        Center(
-                          child: AnimatedSmoothIndicator(
-                            count: 3,
-                            axisDirection: Axis.horizontal,
-                            effect: SlideEffect(
-                              spacing: 8.0,
-                              radius: 50.0,
-                              dotWidth: 10.0,
-                              dotHeight: 10.0,
-                              paintStyle: PaintingStyle.stroke,
-                              strokeWidth: 1.5,
-                              dotColor: Theme.of(context).colorScheme.primary,
-                              activeDotColor: Theme.of(
-                                context,
-                              ).colorScheme.onPrimary,
-                            ),
-                            activeIndex: controller,
-                          ),
-                        ),
-                        SizedBox(height: 10),
                       ],
                     ),
                   ),
+
                   //gridview builder
                   Padding(
                     padding: const EdgeInsets.all(10.0),
